@@ -1,0 +1,14 @@
+{ "columns":48,
+ "image":"Modern_Office_MV_1_TILESETS_B-C-D-E.png",
+ "imageheight":768,
+ "imagewidth":768,
+ "margin":0,
+ "name":"objetos",
+ "spacing":0,
+ "tilecount":2304,
+ "tiledversion":"1.8.0",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":"1.8"
+}

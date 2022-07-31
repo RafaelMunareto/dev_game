@@ -1,0 +1,14 @@
+{ "columns":76,
+ "image":"Room_Builder_16x16.png",
+ "imageheight":1744,
+ "imagewidth":1216,
+ "margin":0,
+ "name":"objetos3",
+ "spacing":0,
+ "tilecount":8284,
+ "tiledversion":"1.8.0",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":"1.8"
+}

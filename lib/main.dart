@@ -1,0 +1,19 @@
+import 'package:dev_game/pages/home_page.dart';
+import 'package:dev_game/utils/fade_page_transitions.dart';
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(
+    MaterialApp(
+      theme: ThemeData(
+          useMaterial3: true,
+          pageTransitionsTheme: PageTransitionsTheme(
+            builders: {
+              TargetPlatform.linux: FadePageTransition(),
+            },
+          )),
+      debugShowCheckedModeBanner: false,
+      home: const HomePage(),
+    ),
+  );
+}
