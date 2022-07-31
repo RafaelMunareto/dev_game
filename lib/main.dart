@@ -6,6 +6,7 @@ void main() {
   runApp(
     MaterialApp(
       theme: ThemeData(
+          visualDensity: VisualDensity.adaptivePlatformDensity,
           useMaterial3: true,
           pageTransitionsTheme: PageTransitionsTheme(
             builders: {

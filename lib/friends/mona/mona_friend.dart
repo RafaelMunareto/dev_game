@@ -1,10 +1,11 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:dev_game/friends/mona/mona_sprite_sheet.dart';
 import 'package:dev_game/utils/constantes.dart';
+import 'package:dev_game/utils/widgets/identity_widget.dart';
 import 'package:flutter/material.dart';
 
 class MonaFriend extends SimplePlayer
-    with ObjectCollision, Lighting, AutomaticRandomMovement {
+    with ObjectCollision, Lighting, AutomaticRandomMovement, TapGesture {
   bool canMove = true;
   MonaFriend(Vector2 position)
       : super(
@@ -28,8 +29,8 @@ class MonaFriend extends SimplePlayer
       CollisionConfig(
         collisions: [
           CollisionArea.rectangle(
-            size: Vector2(tileSizePerson - 4, tileSizePerson - 4),
-            align: Vector2(2, 8),
+            size: colisaoSizePersonagens,
+            align: colisaoAlignPersonagens,
           ),
         ],
       ),
@@ -44,7 +45,39 @@ class MonaFriend extends SimplePlayer
 
   @override
   void update(double dt) {
-    //runRandomMovement(dt);
+    runRandomMovement(dt);
     super.update(dt);
+  }
+
+  @override
+  void onTap() {
+    if (FollowerWidget.isVisible('identify')) {
+      FollowerWidget.remove('identify');
+    } else {
+      FollowerWidget.show(
+          identify: 'identify',
+          context: context,
+          align: alignIdentity,
+          target: this,
+          child: const IdentityWidget(
+            title: "Mona - Consultor",
+            responsabilidade: "ADMINISTRATIVO",
+          ));
+    }
+  }
+
+  @override
+  void onTapCancel() {
+    // TODO: implement onTapCancel
+  }
+
+  @override
+  void onTapDown(int pointer, Vector2 position) {
+    // TODO: implement onTapDown
+  }
+
+  @override
+  void onTapUp(int pointer, Vector2 position) {
+    // TODO: implement onTapUp
   }
 }

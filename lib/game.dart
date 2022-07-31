@@ -1,5 +1,7 @@
 import 'package:bonfire/bonfire.dart';
+import 'package:dev_game/controller/my_game_controller.dart';
 import 'package:dev_game/enimies/bispo/bispo_enimy.dart';
+import 'package:dev_game/friends/cadu/cadu_friend.dart';
 import 'package:dev_game/friends/edgar/edgar_friend.dart';
 import 'package:dev_game/friends/fabinho/fabinho_friend.dart';
 import 'package:dev_game/friends/fernando/fernando_friend.dart';
@@ -11,6 +13,7 @@ import 'package:dev_game/friends/mona/mona_friend.dart';
 import 'package:dev_game/friends/rafa/rafa_friend.dart';
 import 'package:dev_game/friends/rodrigo/rodrigo_friend.dart';
 import 'package:dev_game/friends/rogerio/rogerio_friend.dart';
+import 'package:dev_game/friends/roriz/roriz_friend.dart';
 import 'package:dev_game/friends/silvia/silvia_friend.dart';
 import 'package:dev_game/friends/talmon/talmon_friend.dart';
 import 'package:dev_game/friends/thaisa/thaisa_friend.dart';
@@ -54,38 +57,44 @@ class _GameState extends State<Game> {
       joystick: Joystick(
         directional: JoystickDirectional(
             color: Colors.orange, margin: const EdgeInsets.all(64)),
-        actions: [
-          JoystickAction(
-              actionId: 32,
-              color: Colors.red,
-              margin: const EdgeInsets.all(48)),
-        ],
+        // actions: [
+        //   JoystickAction(
+        //       actionId: 32,
+        //       color: Colors.red,
+        //       margin: const EdgeInsets.all(48)),
+        // ],
         keyboardConfig: KeyboardConfig(
           enable: true,
           keyboardDirectionalType: KeyboardDirectionalType.wasdAndArrows,
         ),
       ),
-      // components: [MyGameController(widget.stage), ...enemies],
-      map: TiledWorldMap('maps/dev_game.json', objectsBuilder: {
-        'rafa': (properties) => RafaFriend(properties.position),
-        'talmon': (properties) => TalmonFriend(properties.position),
-        'jeferson': (properties) => JefersonFriend(properties.position),
-        'fabinho': (properties) => FabinhoFriend(properties.position),
-        'mona': (properties) => MonaFriend(properties.position),
-        'thaisa': (properties) => ThaisaFriend(properties.position),
-        'edgar': (properties) => EdgarFriend(properties.position),
-        'fernando': (properties) => FernandoFriend(properties.position),
-        'rogerio': (properties) => RogerioFriend(properties.position),
-        'rodrigo': (properties) => RodrigoFriend(properties.position),
-        'juliano': (properties) => JulianoFriend(properties.position),
-        'japa': (properties) => JapaFriend(properties.position),
-        'leo': (properties) => LeoFriend(properties.position),
-        'silvia': (properties) => SilviaFriend(properties.position),
-        // 'lamp': ((properties) => Lamp(properties.position)),
-        // 'chess': ((properties) => Chess(properties.position)),
-        // 'mushroom': ((properties) => MushRoom(properties.position))
-      }),
-      player: GameHero(Vector2(329, 576)),
+      components: [
+        MyGameController(widget.stage),
+      ], //...enemies],
+      map: TiledWorldMap('maps/dev_game.json',
+          forceTileSize: const Size(24, 24),
+          objectsBuilder: {
+            'rafa': (properties) => RafaFriend(properties.position),
+            'talmon': (properties) => TalmonFriend(properties.position),
+            'jeferson': (properties) => JefersonFriend(properties.position),
+            'fabinho': (properties) => FabinhoFriend(properties.position),
+            'mona': (properties) => MonaFriend(properties.position),
+            'thaisa': (properties) => ThaisaFriend(properties.position),
+            'edgar': (properties) => EdgarFriend(properties.position),
+            'fernando': (properties) => FernandoFriend(properties.position),
+            'rogerio': (properties) => RogerioFriend(properties.position),
+            'rodrigo': (properties) => RodrigoFriend(properties.position),
+            'juliano': (properties) => JulianoFriend(properties.position),
+            'japa': (properties) => JapaFriend(properties.position),
+            'leo': (properties) => LeoFriend(properties.position),
+            'silvia': (properties) => SilviaFriend(properties.position),
+            'cadu': (properties) => CaduFriend(properties.position),
+            'roriz': (properties) => RorizFriend(properties.position),
+            // 'lamp': ((properties) => Lamp(properties.position)),
+            // 'chess': ((properties) => Chess(properties.position)),
+            // 'mushroom': ((properties) => MushRoom(properties.position))
+          }),
+      player: GameHero(Vector2(400, 900)),
       overlayBuilderMap: {
         PlayerInterface.overlayKey: (context, game) =>
             PlayerInterface(game: game)
@@ -93,7 +102,7 @@ class _GameState extends State<Game> {
       initialActiveOverlays: const [PlayerInterface.overlayKey],
       cameraConfig: CameraConfig(
           moveOnlyMapArea: true,
-          zoom: 2,
+          zoom: 2.0,
           sizeMovementWindow: Vector2(tileSize * 8, tileSize * 8)),
       showCollisionArea: false,
       // lightingColorGame: Colors.black.withOpacity(0.2),

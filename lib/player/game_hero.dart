@@ -29,8 +29,8 @@ class GameHero extends SimplePlayer with ObjectCollision, Lighting, TapGesture {
       CollisionConfig(
         collisions: [
           CollisionArea.rectangle(
-            size: Vector2(tileSizePerson - 4, tileSizePerson - 4),
-            align: Vector2(2, 8),
+            size: colisaoSizePersonagens,
+            align: colisaoAlignPersonagens,
           ),
         ],
       ),
@@ -128,32 +128,32 @@ class GameHero extends SimplePlayer with ObjectCollision, Lighting, TapGesture {
           ),
           personSayDirection: PersonSayDirection.RIGHT)
     ]);
-    // if (FollowerWidget.isVisible('identify')) {
-    //   FollowerWidget.remove('identify');
-    // } else {
-    //   FollowerWidget.show(
-    //       identify: 'identify',
-    //       context: context,
-    //       align: const Offset(30, -110),
-    //       target: this,
-    //       child: Card(
-    //         child: Padding(
-    //           padding: const EdgeInsets.all(8.0),
-    //           child: Column(
-    //             children: [
-    //               const Icon(Icons.add),
-    //               const Text('Olá'),
-    //               const SizedBox(
-    //                 height: 10,
-    //               ),
-    //               ElevatedButton(
-    //                   onPressed: () => FollowerWidget.remove('identify'),
-    //                   child: const Text('OK'))
-    //             ],
-    //           ),
-    //         ),
-    //       ));
-    // }
+    if (FollowerWidget.isVisible('identify')) {
+      FollowerWidget.remove('identify');
+    } else {
+      FollowerWidget.show(
+          identify: 'identify',
+          context: context,
+          align: const Offset(30, -110),
+          target: this,
+          child: Card(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  const Icon(Icons.add),
+                  const Text('Olá'),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  ElevatedButton(
+                      onPressed: () => FollowerWidget.remove('identify'),
+                      child: const Text('OK'))
+                ],
+              ),
+            ),
+          ));
+    }
   }
 
   @override
