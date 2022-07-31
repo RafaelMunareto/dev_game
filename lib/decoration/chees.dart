@@ -3,8 +3,8 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:dev_game/decoration/decoration_sprit_sheet.dart';
 import 'package:dev_game/decoration/mushroom.dart';
-import 'package:dev_game/game.dart';
 import 'package:dev_game/player/game_hero.dart';
+import 'package:dev_game/utils/constantes.dart';
 import 'package:flutter/material.dart';
 
 class Chess extends GameDecoration with ObjectCollision, TapGesture {

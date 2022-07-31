@@ -1,7 +1,7 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:dev_game/enimies/bispo/bispo_sprint_sheet.dart';
-import 'package:dev_game/game.dart';
 import 'package:dev_game/utils/attack/attack_sprite.dart';
+import 'package:dev_game/utils/constantes.dart';
 import 'package:flutter/cupertino.dart';
 
 class BispoEnemy extends SimpleEnemy

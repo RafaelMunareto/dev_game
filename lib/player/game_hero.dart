@@ -1,8 +1,8 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:dev_game/enimies/bispo/bispo_sprint_sheet.dart';
-import 'package:dev_game/game.dart';
 import 'package:dev_game/player/hero_sprint_sheet.dart';
 import 'package:dev_game/utils/attack/attack_sprite.dart';
+import 'package:dev_game/utils/constantes.dart';
 import 'package:flutter/material.dart';
 
 class GameHero extends SimplePlayer with ObjectCollision, Lighting, TapGesture {
@@ -11,21 +11,26 @@ class GameHero extends SimplePlayer with ObjectCollision, Lighting, TapGesture {
       : super(
             position: position,
             size: Vector2(
-              tileSize,
-              tileSize,
+              tileSizePerson,
+              tileSizePerson,
             ),
             animation: SimpleDirectionAnimation(
-                idleLeft: HeroSpriteSheet.heroIdLeft,
-                idleRight: HeroSpriteSheet.heroIdRight,
-                runRight: HeroSpriteSheet.heroRunRight,
-                runLeft: HeroSpriteSheet.heroRunLeft),
+              idleLeft: HeroSpriteSheet.heroIdLeft,
+              idleRight: HeroSpriteSheet.heroIdRight,
+              idleUp: HeroSpriteSheet.heroIdUp,
+              idleDown: HeroSpriteSheet.heroIdDown,
+              runRight: HeroSpriteSheet.heroRunRight,
+              runLeft: HeroSpriteSheet.heroRunLeft,
+              runUp: HeroSpriteSheet.heroRunUp,
+              runDown: HeroSpriteSheet.heroRunDown,
+            ),
             speed: 75) {
     setupCollision(
       CollisionConfig(
         collisions: [
           CollisionArea.rectangle(
-            size: Vector2(tileSize - 4, tileSize),
-            align: Vector2(2, 2),
+            size: Vector2(tileSizePerson - 4, tileSizePerson - 4),
+            align: Vector2(2, 8),
           ),
         ],
       ),

@@ -1,5 +1,5 @@
 import 'package:bonfire/bonfire.dart';
-import 'package:dev_game/game.dart';
+import 'package:dev_game/utils/constantes.dart';
 import 'package:flutter/material.dart';
 
 class Lamp extends GameDecoration with Lighting {

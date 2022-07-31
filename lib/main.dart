@@ -1,4 +1,4 @@
-import 'package:dev_game/pages/home_page.dart';
+import 'package:dev_game/game.dart';
 import 'package:dev_game/utils/fade_page_transitions.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +13,7 @@ void main() {
             },
           )),
       debugShowCheckedModeBanner: false,
-      home: const HomePage(),
+      home: const Game(),
     ),
   );
 }

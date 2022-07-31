@@ -1,8 +1,8 @@
 import 'package:bonfire/bonfire.dart';
 
-class HeroSpriteSheet {
+class RodrigoSpriteSheet {
   static Future<SpriteAnimation> get heroIdLeft => SpriteAnimation.load(
-        'player/munareto.png',
+        'player/rodrigo.png',
         SpriteAnimationData.sequenced(
           amount: 6,
           stepTime: 0.15,
@@ -11,7 +11,7 @@ class HeroSpriteSheet {
         ),
       );
   static Future<SpriteAnimation> get heroIdRight => SpriteAnimation.load(
-        'player/munareto.png',
+        'player/rodrigo.png',
         SpriteAnimationData.sequenced(
           amount: 6,
           stepTime: 0.15,
@@ -20,7 +20,7 @@ class HeroSpriteSheet {
         ),
       );
   static Future<SpriteAnimation> get heroIdUp => SpriteAnimation.load(
-        'player/munareto.png',
+        'player/rodrigo.png',
         SpriteAnimationData.sequenced(
           amount: 6,
           stepTime: 0.15,
@@ -29,7 +29,7 @@ class HeroSpriteSheet {
         ),
       );
   static Future<SpriteAnimation> get heroIdDown => SpriteAnimation.load(
-        'player/munareto.png',
+        'player/rodrigo.png',
         SpriteAnimationData.sequenced(
           amount: 6,
           stepTime: 0.15,
@@ -39,7 +39,7 @@ class HeroSpriteSheet {
       );
 
   static Future<SpriteAnimation> get heroRunRight => SpriteAnimation.load(
-        'player/munareto.png',
+        'player/rodrigo.png',
         SpriteAnimationData.sequenced(
           amount: 6,
           stepTime: 0.15,
@@ -49,7 +49,7 @@ class HeroSpriteSheet {
       );
 
   static Future<SpriteAnimation> get heroRunLeft => SpriteAnimation.load(
-        'player/munareto.png',
+        'player/rodrigo.png',
         SpriteAnimationData.sequenced(
           amount: 6,
           stepTime: 0.15,
@@ -59,7 +59,7 @@ class HeroSpriteSheet {
       );
 
   static Future<SpriteAnimation> get heroRunUp => SpriteAnimation.load(
-        'player/munareto.png',
+        'player/rodrigo.png',
         SpriteAnimationData.sequenced(
           amount: 6,
           stepTime: 0.15,
@@ -69,7 +69,7 @@ class HeroSpriteSheet {
       );
 
   static Future<SpriteAnimation> get heroRunDown => SpriteAnimation.load(
-        'player/munareto.png',
+        'player/rodrigo.png',
         SpriteAnimationData.sequenced(
           amount: 6,
           stepTime: 0.15,
@@ -79,7 +79,7 @@ class HeroSpriteSheet {
       );
 
   static Future<SpriteAnimation> get recevieDamageRight => SpriteAnimation.load(
-        'player/munareto.png',
+        'player/rodrigo.png',
         SpriteAnimationData.sequenced(
           amount: 3,
           stepTime: 0.15,
@@ -89,7 +89,7 @@ class HeroSpriteSheet {
       );
 
   static Future<SpriteAnimation> get recevieDamageLeft => SpriteAnimation.load(
-        'player/munareto.png',
+        'player/rodrigo.png',
         SpriteAnimationData.sequenced(
           amount: 3,
           stepTime: 0.15,
@@ -99,7 +99,7 @@ class HeroSpriteSheet {
       );
 
   static Future<SpriteAnimation> get dieRight => SpriteAnimation.load(
-        'player/munareto.png',
+        'player/rodrigo.png',
         SpriteAnimationData.sequenced(
           amount: 3,
           stepTime: 0.15,
@@ -108,7 +108,7 @@ class HeroSpriteSheet {
         ),
       );
   static Future<SpriteAnimation> get dieLeft => SpriteAnimation.load(
-        'player/munareto.png',
+        'player/rodrigo.png',
         SpriteAnimationData.sequenced(
           amount: 3,
           stepTime: 0.15,
