@@ -1,5 +1,6 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:dev_game/controller/my_game_controller.dart';
+import 'package:dev_game/decoration/cadeira_munareto/cadeira_munareto.dart';
 import 'package:dev_game/enimies/bispo/bispo_enimy.dart';
 import 'package:dev_game/friends/cadu/cadu_friend.dart';
 import 'package:dev_game/friends/edgar/edgar_friend.dart';
@@ -17,7 +18,7 @@ import 'package:dev_game/friends/roriz/roriz_friend.dart';
 import 'package:dev_game/friends/silvia/silvia_friend.dart';
 import 'package:dev_game/friends/talmon/talmon_friend.dart';
 import 'package:dev_game/friends/thaisa/thaisa_friend.dart';
-import 'package:dev_game/interface/player_interface.dart';
+import 'package:dev_game/interface/player_interceface_pontos.dart';
 import 'package:dev_game/player/game_hero.dart';
 import 'package:dev_game/utils/constantes.dart';
 import 'package:flutter/material.dart';
@@ -72,7 +73,7 @@ class _GameState extends State<Game> {
         MyGameController(widget.stage),
       ], //...enemies],
       map: TiledWorldMap('maps/dev_game.json',
-          forceTileSize: const Size(24, 24),
+          forceTileSize: const Size(28, 28),
           objectsBuilder: {
             'rafa': (properties) => RafaFriend(properties.position),
             'talmon': (properties) => TalmonFriend(properties.position),
@@ -90,16 +91,17 @@ class _GameState extends State<Game> {
             'silvia': (properties) => SilviaFriend(properties.position),
             'cadu': (properties) => CaduFriend(properties.position),
             'roriz': (properties) => RorizFriend(properties.position),
+            'cadeira_munareto': ((properties) =>
+                CadeiraMunareto(properties.position)),
             // 'lamp': ((properties) => Lamp(properties.position)),
-            // 'chess': ((properties) => Chess(properties.position)),
             // 'mushroom': ((properties) => MushRoom(properties.position))
           }),
       player: GameHero(Vector2(400, 900)),
       overlayBuilderMap: {
-        PlayerInterface.overlayKey: (context, game) =>
-            PlayerInterface(game: game)
+        PlayerInterfacePontos.overlayKey: (context, game) =>
+            PlayerInterfacePontos(game: game)
       },
-      initialActiveOverlays: const [PlayerInterface.overlayKey],
+      initialActiveOverlays: const [PlayerInterfacePontos.overlayKey],
       cameraConfig: CameraConfig(
           moveOnlyMapArea: true,
           zoom: 2.0,

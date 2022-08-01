@@ -6,8 +6,61 @@
  "name":"objetos",
  "spacing":0,
  "tilecount":2304,
- "tiledversion":"1.8.0",
+ "tiledversion":"1.9.0",
  "tileheight":16,
+ "tiles":[
+        {
+         "id":84,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "id":2,
+             "name":"",
+             "objects":[
+                    {
+                     "class":"",
+                     "height":10.5901116427432,
+                     "id":1,
+                     "name":"",
+                     "rotation":0,
+                     "visible":true,
+                     "width":13.2270069112174,
+                     "x":2.67942583732057,
+                     "y":5.27379053694843
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            }
+        }, 
+        {
+         "id":85,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "id":2,
+             "name":"",
+             "objects":[
+                    {
+                     "class":"",
+                     "height":10.207336523126,
+                     "id":1,
+                     "name":"",
+                     "rotation":0,
+                     "visible":true,
+                     "width":16.501860712387,
+                     "x":-0.382775119617225,
+                     "y":5.86921850079745
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            }
+        }],
  "tilewidth":16,
  "type":"tileset",
  "version":"1.8"

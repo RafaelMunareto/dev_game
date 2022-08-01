@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tileset version="1.9" tiledversion="1.9.0" name="moder_custom" tilewidth="16" tileheight="16" tilecount="848" columns="16">
+ <image source="modercustom.png" width="256" height="848"/>
+ <tile id="804">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="7.27273" y="15.5662">
+    <polygon points="0,0 1.10579,-3.53004 3.95534,-6.08187 7.91069,-7.57044 8.46358,-7.52791 8.67624,0.297714"/>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="805">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="-0.170122" y="8.16587">
+    <polygon points="0,0 5.48644,0 10.2073,3.53004 11.5683,7.1026 11.3982,7.57044 0.170122,7.6555"/>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="820">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="6.71983" y="0.170122">
+    <polygon points="0,0 1.82881,4.42318 4.67836,6.88995 8.97395,7.61297 8.97395,-0.297714 0.212653,-0.340245"/>
+   </object>
+  </objectgroup>
+ </tile>
+</tileset>

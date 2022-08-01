@@ -1,11 +1,12 @@
 import 'package:bonfire/bonfire.dart';
-import 'package:dev_game/enimies/bispo/bispo_sprint_sheet.dart';
 import 'package:dev_game/player/hero_sprint_sheet.dart';
 import 'package:dev_game/utils/attack/attack_sprite.dart';
 import 'package:dev_game/utils/constantes.dart';
+import 'package:dev_game/utils/widgets/identity_widget.dart';
 import 'package:flutter/material.dart';
 
-class GameHero extends SimplePlayer with ObjectCollision, Lighting, TapGesture {
+class GameHero extends SimplePlayer
+    with ObjectCollision, Lighting, TapGesture, MouseGesture {
   bool canMove = true;
   GameHero(Vector2 position)
       : super(
@@ -24,7 +25,7 @@ class GameHero extends SimplePlayer with ObjectCollision, Lighting, TapGesture {
               runUp: HeroSpriteSheet.heroRunUp,
               runDown: HeroSpriteSheet.heroRunDown,
             ),
-            speed: 75) {
+            speed: velocidadeGamers) {
     setupCollision(
       CollisionConfig(
         collisions: [
@@ -105,56 +106,7 @@ class GameHero extends SimplePlayer with ObjectCollision, Lighting, TapGesture {
   }
 
   @override
-  void onTap() {
-    TalkDialog.show(context, [
-      Say(
-          text: [
-            const TextSpan(text: "Olá tudo bem?"),
-          ],
-          person: SizedBox(
-            height: 100,
-            width: 100,
-            child: BispoEnemySpriteSheet.idRight.asWidget(),
-          ),
-          personSayDirection: PersonSayDirection.RIGHT),
-      Say(
-          text: [
-            const TextSpan(text: "Tudo e você?"),
-          ],
-          person: SizedBox(
-            height: 100,
-            width: 100,
-            child: HeroSpriteSheet.heroIdRight.asWidget(),
-          ),
-          personSayDirection: PersonSayDirection.RIGHT)
-    ]);
-    if (FollowerWidget.isVisible('identify')) {
-      FollowerWidget.remove('identify');
-    } else {
-      FollowerWidget.show(
-          identify: 'identify',
-          context: context,
-          align: const Offset(30, -110),
-          target: this,
-          child: Card(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  const Icon(Icons.add),
-                  const Text('Olá'),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  ElevatedButton(
-                      onPressed: () => FollowerWidget.remove('identify'),
-                      child: const Text('OK'))
-                ],
-              ),
-            ),
-          ));
-    }
-  }
+  void onTap() {}
 
   @override
   void onTapCancel() {}
@@ -164,4 +116,49 @@ class GameHero extends SimplePlayer with ObjectCollision, Lighting, TapGesture {
 
   @override
   void onTapUp(int pointer, Vector2 position) {}
+
+  @override
+  void onHoverEnter(int pointer, Vector2 position) {
+    if (!FollowerWidget.isVisible('identify')) {
+      FollowerWidget.show(
+          identify: 'identify',
+          context: context,
+          align: alignIdentity,
+          target: this,
+          child: const IdentityWidget(
+            title: "Munareto - GN",
+            responsabilidade: "Chefe da área",
+          ));
+    }
+  }
+
+  @override
+  void onHoverExit(int pointer, Vector2 position) {
+    FollowerWidget.remove('identify');
+  }
+
+  @override
+  void onMouseCancel() {
+    // TODO: implement onMouseCancel
+  }
+
+  @override
+  void onMouseTapLeft() {
+    // TODO: implement onMouseTapLeft
+  }
+
+  @override
+  void onMouseTapMiddle() {
+    // TODO: implement onMouseTapMiddle
+  }
+
+  @override
+  void onMouseTapRight() {
+    // TODO: implement onMouseTapRight
+  }
+
+  @override
+  void onScroll(int pointer, Vector2 position, Vector2 scrollDelta) {
+    // TODO: implement onScroll
+  }
 }

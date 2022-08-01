@@ -1,12 +1,18 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:dev_game/friends/thaisa/thaisa_sprite_sheet.dart';
+import 'package:dev_game/player/hero_sprint_sheet.dart';
 
 import 'package:dev_game/utils/constantes.dart';
 import 'package:dev_game/utils/widgets/identity_widget.dart';
 import 'package:flutter/material.dart';
 
 class ThaisaFriend extends SimplePlayer
-    with ObjectCollision, Lighting, AutomaticRandomMovement, TapGesture {
+    with
+        ObjectCollision,
+        Lighting,
+        AutomaticRandomMovement,
+        TapGesture,
+        MouseGesture {
   bool canMove = true;
   ThaisaFriend(Vector2 position)
       : super(
@@ -25,7 +31,7 @@ class ThaisaFriend extends SimplePlayer
               runUp: ThaisaSpriteSheet.heroRunUp,
               runDown: ThaisaSpriteSheet.heroRunDown,
             ),
-            speed: 75) {
+            speed: velocidadeGamers) {
     setupCollision(
       CollisionConfig(
         collisions: [
@@ -52,19 +58,28 @@ class ThaisaFriend extends SimplePlayer
 
   @override
   void onTap() {
-    if (FollowerWidget.isVisible('identify')) {
-      FollowerWidget.remove('identify');
-    } else {
-      FollowerWidget.show(
-          identify: 'identify',
-          context: context,
-          align: alignIdentity,
-          target: this,
-          child: const IdentityWidget(
-            title: "Thaísa - TBN",
-            responsabilidade: "PJ AG. 647",
-          ));
-    }
+    TalkDialog.show(context, [
+      Say(
+          text: [
+            const TextSpan(text: "Oi Rafa!"),
+          ],
+          person: SizedBox(
+            height: 150,
+            width: 150,
+            child: ThaisaSpriteSheet.heroIdDown.asWidget(),
+          ),
+          personSayDirection: PersonSayDirection.RIGHT),
+      Say(
+          text: [
+            const TextSpan(text: "Oi Negrinha!"),
+          ],
+          person: SizedBox(
+            height: 150,
+            width: 150,
+            child: HeroSpriteSheet.heroIdDown.asWidget(),
+          ),
+          personSayDirection: PersonSayDirection.RIGHT)
+    ]);
   }
 
   @override
@@ -80,5 +95,49 @@ class ThaisaFriend extends SimplePlayer
   @override
   void onTapUp(int pointer, Vector2 position) {
     // TODO: implement onTapUp
+  }
+  @override
+  void onHoverEnter(int pointer, Vector2 position) {
+    if (!FollowerWidget.isVisible('identifyThaisa')) {
+      FollowerWidget.show(
+          identify: 'identifyThaisa',
+          context: context,
+          align: alignIdentity,
+          target: this,
+          child: const IdentityWidget(
+            title: "Thaísa - TBN",
+            responsabilidade: "AG. 647",
+          ));
+    }
+  }
+
+  @override
+  void onHoverExit(int pointer, Vector2 position) {
+    FollowerWidget.remove('identifyThaisa');
+  }
+
+  @override
+  void onMouseCancel() {
+    // TODO: implement onMouseCancel
+  }
+
+  @override
+  void onMouseTapLeft() {
+    // TODO: implement onMouseTapLeft
+  }
+
+  @override
+  void onMouseTapMiddle() {
+    // TODO: implement onMouseTapMiddle
+  }
+
+  @override
+  void onMouseTapRight() {
+    // TODO: implement onMouseTapRight
+  }
+
+  @override
+  void onScroll(int pointer, Vector2 position, Vector2 scrollDelta) {
+    // TODO: implement onScroll
   }
 }

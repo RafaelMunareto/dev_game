@@ -1,0 +1,14 @@
+{ "columns":16,
+ "image":"modercustom.png",
+ "imageheight":848,
+ "imagewidth":256,
+ "margin":0,
+ "name":"modercustom",
+ "spacing":0,
+ "tilecount":848,
+ "tiledversion":"1.9.0",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":"1.8"
+}

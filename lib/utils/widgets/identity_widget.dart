@@ -1,4 +1,3 @@
-import 'package:bonfire/bonfire.dart';
 import 'package:flutter/material.dart';
 
 class IdentityWidget extends StatelessWidget {
@@ -27,12 +26,12 @@ class IdentityWidget extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: const TextStyle(color: Colors.white, fontSize: 10),
               ),
-              const SizedBox(
-                height: 10,
-              ),
-              ElevatedButton(
-                  onPressed: () => FollowerWidget.remove('identify'),
-                  child: const Text('OK'))
+              // const SizedBox(
+              //   height: 10,
+              // ),
+              // ElevatedButton(
+              //     onPressed: () => FollowerWidget.remove('identify'),
+              //     child: const Text('OK'))
             ],
           ),
         ),

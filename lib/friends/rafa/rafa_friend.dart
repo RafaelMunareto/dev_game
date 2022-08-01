@@ -1,11 +1,18 @@
 import 'package:bonfire/bonfire.dart';
+import 'package:dev_game/friends/cadu/cadu_sprite_sheet.dart';
 import 'package:dev_game/friends/rafa/rafa_sprit_sheet.dart';
+import 'package:dev_game/player/hero_sprint_sheet.dart';
 import 'package:dev_game/utils/constantes.dart';
 import 'package:dev_game/utils/widgets/identity_widget.dart';
 import 'package:flutter/material.dart';
 
 class RafaFriend extends SimplePlayer
-    with ObjectCollision, Lighting, AutomaticRandomMovement, TapGesture {
+    with
+        ObjectCollision,
+        Lighting,
+        AutomaticRandomMovement,
+        TapGesture,
+        MouseGesture {
   RafaFriend(Vector2 position)
       : super(
             position: position,
@@ -23,7 +30,7 @@ class RafaFriend extends SimplePlayer
               runUp: RafaSpriteSheet.heroRunUp,
               runDown: RafaSpriteSheet.heroRunDown,
             ),
-            speed: 75) {
+            speed: velocidadeGamers) {
     setupCollision(
       CollisionConfig(
         collisions: [
@@ -50,19 +57,28 @@ class RafaFriend extends SimplePlayer
 
   @override
   void onTap() {
-    if (FollowerWidget.isVisible('identify')) {
-      FollowerWidget.remove('identify');
-    } else {
-      FollowerWidget.show(
-          identify: 'identify',
-          context: context,
-          align: alignIdentity,
-          target: this,
-          child: const IdentityWidget(
-            title: "Rafa - CPM",
-            responsabilidade: "Chefe do Backend",
-          ));
-    }
+    TalkDialog.show(context, [
+      Say(
+          text: [
+            const TextSpan(text: "E aí Muna!"),
+          ],
+          person: SizedBox(
+            height: 150,
+            width: 150,
+            child: RafaSpriteSheet.heroIdDown.asWidget(),
+          ),
+          personSayDirection: PersonSayDirection.RIGHT),
+      Say(
+          text: [
+            const TextSpan(text: "E aí Rafinha?"),
+          ],
+          person: SizedBox(
+            height: 150,
+            width: 150,
+            child: HeroSpriteSheet.heroIdDown.asWidget(),
+          ),
+          personSayDirection: PersonSayDirection.RIGHT)
+    ]);
   }
 
   @override
@@ -78,5 +94,49 @@ class RafaFriend extends SimplePlayer
   @override
   void onTapUp(int pointer, Vector2 position) {
     // TODO: implement onTapUp
+  }
+  @override
+  void onHoverEnter(int pointer, Vector2 position) {
+    if (!FollowerWidget.isVisible('identifyRafa')) {
+      FollowerWidget.show(
+          identify: 'identifyRafa',
+          context: context,
+          align: alignIdentity,
+          target: this,
+          child: const IdentityWidget(
+            title: "Rafa - CPM",
+            responsabilidade: "Chefe do Backend",
+          ));
+    }
+  }
+
+  @override
+  void onHoverExit(int pointer, Vector2 position) {
+    FollowerWidget.remove('identifyRafa');
+  }
+
+  @override
+  void onMouseCancel() {
+    // TODO: implement onMouseCancel
+  }
+
+  @override
+  void onMouseTapLeft() {
+    // TODO: implement onMouseTapLeft
+  }
+
+  @override
+  void onMouseTapMiddle() {
+    // TODO: implement onMouseTapMiddle
+  }
+
+  @override
+  void onMouseTapRight() {
+    // TODO: implement onMouseTapRight
+  }
+
+  @override
+  void onScroll(int pointer, Vector2 position, Vector2 scrollDelta) {
+    // TODO: implement onScroll
   }
 }
