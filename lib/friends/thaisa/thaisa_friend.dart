@@ -105,7 +105,7 @@ class ThaisaFriend extends SimplePlayer
           align: alignIdentity,
           target: this,
           child: const IdentityWidget(
-            title: "Thaísa - TBN",
+            title: "Thaísa - Assistente",
             responsabilidade: "AG. 647",
           ));
     }

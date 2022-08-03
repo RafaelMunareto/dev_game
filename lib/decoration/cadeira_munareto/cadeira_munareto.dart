@@ -2,7 +2,6 @@
 
 import 'package:bonfire/bonfire.dart';
 import 'package:dev_game/decoration/cadeira_munareto/cadeira_munareto_decoration_sprit_sheet.dart';
-import 'package:dev_game/decoration/mushroom.dart';
 import 'package:dev_game/player/game_hero.dart';
 import 'package:dev_game/utils/constantes.dart';
 import 'package:dev_game/utils/widgets/action_player.dart';
@@ -71,17 +70,15 @@ class CadeiraMunareto extends GameDecoration with ObjectCollision, TapGesture {
         context: context,
         align: alignActionPlayers,
         target: this,
-        child: const ActionPlayerWidget(),
+        child: ActionPlayerWidget(
+          game: gameRef,
+        ),
       );
     }
   }
 
   @override
-  void onTap() {
-    if (_playerIsClosed) {
-      gameRef.add(MushRoom(position.translate(tileSize, 0)));
-    }
-  }
+  void onTap() {}
 
   @override
   void onTapCancel() {}
