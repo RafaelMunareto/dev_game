@@ -4,7 +4,7 @@ import 'package:bonfire/bonfire.dart';
 import 'package:dev_game/friends/cadu/cadu_sprite_sheet.dart';
 import 'package:dev_game/player/hero_sprint_sheet.dart';
 import 'package:dev_game/utils/constantes.dart';
-import 'package:dev_game/utils/widgets/identity_widget.dart';
+import 'package:dev_game/utils/widgets/comum/identity_widget.dart';
 import 'package:flutter/material.dart';
 
 class CaduFriend extends SimplePlayer

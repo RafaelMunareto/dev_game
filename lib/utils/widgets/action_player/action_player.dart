@@ -1,6 +1,6 @@
 import 'package:bonfire/base/bonfire_game_interface.dart';
 import 'package:dev_game/player/game_hero.dart';
-import 'package:dev_game/utils/widgets/list_tile_action_player.dart';
+import 'package:dev_game/utils/widgets/action_player/list_tile_action_player.dart';
 import 'package:flutter/material.dart';
 
 class ActionPlayerWidget extends StatelessWidget {
@@ -27,7 +27,7 @@ class ActionPlayerWidget extends StatelessWidget {
                     ListTileActionWidget(
                       game: game,
                       action: 'Fazer reunião de gestão?',
-                      tempo: '-3',
+                      tempo: '+3',
                       qualidade: '+2',
                       aprendizado: '+1',
                       clima: '0',
@@ -35,7 +35,7 @@ class ActionPlayerWidget extends StatelessWidget {
                     ListTileActionWidget(
                       game: game,
                       action: 'Bolar um sistema novo?',
-                      tempo: '-2',
+                      tempo: '2',
                       qualidade: '+1',
                       aprendizado: '+3',
                       clima: '+1',
@@ -52,7 +52,7 @@ class ActionPlayerWidget extends StatelessWidget {
                       game: game,
                       action:
                           'Organizar confraternização ou alguma ação temática?',
-                      tempo: '-2',
+                      tempo: '+2',
                       qualidade: '0',
                       aprendizado: '0',
                       clima: '+4',

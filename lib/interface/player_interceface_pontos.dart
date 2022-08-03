@@ -118,7 +118,7 @@ class _PlayerInterfacePontosState extends State<PlayerInterfacePontos> {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         decoration: BoxDecoration(
-            color: Colors.black54, borderRadius: BorderRadius.circular(5)),
+            color: Colors.black87, borderRadius: BorderRadius.circular(5)),
         child: Row(children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -137,36 +137,46 @@ class _PlayerInterfacePontosState extends State<PlayerInterfacePontos> {
     return Padding(
       padding: const EdgeInsets.fromLTRB(8, 4, 8, 0),
       child: Container(
-        width: 150,
+        width: 200,
         decoration: BoxDecoration(
             color: Colors.black54, borderRadius: BorderRadius.circular(5)),
-        child: Row(children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: imageCustom(image),
-          ),
-          Stack(
-            children: [
-              Container(
-                width: 100,
-                height: 30,
-                decoration: BoxDecoration(
-                    color: Colors.black54,
-                    borderRadius: BorderRadius.circular(5)),
-              ),
-              AnimatedContainer(
-                duration: const Duration(milliseconds: 300),
-                padding: const EdgeInsets.all(16),
-                width: time,
-                height: 30,
-                decoration: BoxDecoration(
-                  color: color,
-                  borderRadius: BorderRadius.circular(5),
+        child: Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: imageCustom(image),
+            ),
+            Stack(
+              children: [
+                Container(
+                  width: 100,
+                  height: 30,
+                  decoration: BoxDecoration(
+                      color: Colors.black54,
+                      borderRadius: BorderRadius.circular(2)),
                 ),
-              ),
-            ],
-          ),
-        ]),
+                AnimatedContainer(
+                  duration: const Duration(milliseconds: 300),
+                  padding: const EdgeInsets.all(16),
+                  width: time < 0 ? 100 : time,
+                  height: 30,
+                  decoration: BoxDecoration(
+                    color: color,
+                    borderRadius: BorderRadius.circular(2),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 5.0, left: 5),
+                  child: textCustom(
+                      ('${(timerinitial.progress < 0 ? 100 : timerinitial.progress * 100).toStringAsFixed(2)} %')),
+                ),
+              ],
+            ),
+            const SizedBox(width: 10),
+            textCustom(
+                '${(timerinitial.limit < 0 ? 0 : timerinitial.limit / 60).toStringAsFixed(0)} min'),
+          ],
+        ),
       ),
     );
   }

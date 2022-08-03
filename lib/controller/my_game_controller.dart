@@ -6,7 +6,6 @@ import 'package:dev_game/pages/home_page.dart';
 import 'package:dev_game/utils/constantes.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
-import 'package:flame/timer.dart' as flame;
 
 class MyGameController extends GameComponent {
   bool endGame = false;
@@ -135,6 +134,14 @@ class MyGameController extends GameComponent {
 
   void _goHome() {
     timerinitial.reset();
+    timerinitial = timeinitialReset;
+    dados = 0;
+    processados = 0;
+    paginas = 0;
+    clima = 0;
+    qualidade = 0;
+    aprendizado = 0;
+    tempo = 0;
     timerinitial.start();
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(builder: (context) {

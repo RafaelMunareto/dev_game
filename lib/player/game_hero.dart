@@ -2,7 +2,7 @@ import 'package:bonfire/bonfire.dart';
 import 'package:dev_game/player/hero_sprint_sheet.dart';
 import 'package:dev_game/utils/attack/attack_sprite.dart';
 import 'package:dev_game/utils/constantes.dart';
-import 'package:dev_game/utils/widgets/identity_widget.dart';
+import 'package:dev_game/utils/widgets/comum/identity_widget.dart';
 import 'package:flutter/material.dart';
 
 class GameHero extends SimplePlayer
@@ -61,12 +61,7 @@ class GameHero extends SimplePlayer
           onFinish: () {
         canMove = true;
       });
-    } else {
-      animation?.playOnce(HeroSpriteSheet.recevieDamageRight, runToTheEnd: true,
-          onFinish: () {
-        canMove = true;
-      });
-    }
+    } else {}
     super.receiveDamage(attacker, damage, identify);
   }
 

@@ -4,7 +4,8 @@ import 'package:bonfire/bonfire.dart';
 import 'package:dev_game/decoration/cadeira_munareto/cadeira_munareto_decoration_sprit_sheet.dart';
 import 'package:dev_game/player/game_hero.dart';
 import 'package:dev_game/utils/constantes.dart';
-import 'package:dev_game/utils/widgets/action_player.dart';
+import 'package:dev_game/utils/widgets/action_player/action_player.dart';
+
 import 'package:flutter/material.dart';
 
 class CadeiraMunareto extends GameDecoration with ObjectCollision, TapGesture {

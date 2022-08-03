@@ -116,4 +116,14 @@ class RorizSpriteSheet {
           texturePosition: Vector2(96, 1232),
         ),
       );
+
+  static Future<SpriteAnimation> get celular => SpriteAnimation.load(
+        'player/roriz.png',
+        SpriteAnimationData.sequenced(
+          amount: 6,
+          stepTime: 0.15,
+          textureSize: Vector2(32, 48),
+          texturePosition: Vector2(192, 1168),
+        ),
+      );
 }

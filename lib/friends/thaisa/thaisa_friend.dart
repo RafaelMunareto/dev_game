@@ -3,7 +3,7 @@ import 'package:dev_game/friends/thaisa/thaisa_sprite_sheet.dart';
 import 'package:dev_game/player/hero_sprint_sheet.dart';
 
 import 'package:dev_game/utils/constantes.dart';
-import 'package:dev_game/utils/widgets/identity_widget.dart';
+import 'package:dev_game/utils/widgets/comum/identity_widget.dart';
 import 'package:flutter/material.dart';
 
 class ThaisaFriend extends SimplePlayer

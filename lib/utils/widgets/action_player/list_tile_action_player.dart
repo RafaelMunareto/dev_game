@@ -1,4 +1,5 @@
 import 'package:bonfire/base/bonfire_game_interface.dart';
+import 'package:bonfire/bonfire.dart';
 import 'package:dev_game/player/game_hero.dart';
 import 'package:dev_game/utils/constantes.dart';
 import 'package:flutter/material.dart';
@@ -96,6 +97,11 @@ class _ListTileActionWidgetState extends State<ListTileActionWidget> {
                       qualidade = aprendizado + int.parse(widget.qualidade);
                       aprendizado = aprendizado + int.parse(widget.aprendizado);
                       clima = clima + int.parse(widget.clima);
+                      var currentTime = timerinitial.limit;
+                      timerinitial.reset();
+                      timerinitial =
+                          Timer(currentTime - (int.parse(widget.tempo) * 60));
+                      FollowerWidget.remove('actionPlayer');
                     });
                   },
                   child: const Text('Selecionar')),

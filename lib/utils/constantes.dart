@@ -8,8 +8,16 @@ const double velocidadeGamers = 85;
 var colisaoSizePersonagens = Vector2(tileSizePerson / 2, tileSizePerson / 2);
 var colisaoAlignPersonagens = Vector2(8, 16);
 const alignIdentity = Offset(10, -50);
+const alignDados = Offset(40, -200);
 const alignActionPlayers = Offset(50, -280);
-final timerinitial = flame.Timer(480);
+var timerinitial = flame.Timer(480);
+var timeinitialReset = flame.Timer(480);
+
+setTempo(int tempo) {
+  var currentTime = timerinitial.limit;
+  timerinitial.reset();
+  timerinitial = Timer(currentTime - (tempo * 60));
+}
 
 var dados = 0;
 var processados = 0;
