@@ -55,6 +55,48 @@ class RorizFriend extends SimpleEnemy
   }
 
   @override
+  void onTap() {
+    seePlayer(
+      radiusVision: 72,
+      observed: (value) {
+        FollowerWidget.remove('dados');
+        FollowerWidget.remove('identifyRoriz');
+        canMove = false;
+        animation?.play(SimpleAnimationEnum.idleDown);
+        var say = ConversasNormais(
+            spriteFriend: RorizSpriteSheet.heroIdDown.asWidget(),
+            spriteHero: HeroSpriteSheet.heroIdDown.asWidget());
+        TalkDialog.show(context, [
+          ...say.talkNormal('Fala meu Gigante favorito!', 'Bom dia, Muna!'),
+          ...say.talkNormal('Tô precisando de uns dados para um sistema.',
+              'Legal! o que vocês vão fazer?'),
+          ...say.talkNormal(
+              'Um sistema para o chefe, vc tem alguns dados que pode compartilhar?',
+              'Tenho sim, deixa eu ver aqui no celular ...')
+        ], onFinish: () {
+          celular = true;
+          if (!FollowerWidget.isVisible('dados')) {
+            FollowerWidget.show(
+                identify: 'dados',
+                context: context,
+                align: alignDados,
+                target: this,
+                child: const PopUpDadosWidget(
+                  action: "Quais dados vc quer?",
+                  dado1: "Base do Pronampe para arrumar a esteira? 2 dados.",
+                  dado2:
+                      "Base do Microcrédito para um portal de acompanhamento? 1 dado.",
+                  dado3:
+                      "Base dos melhores posicionados no varejo PJ? 1 dados.",
+                ));
+          }
+          canMove = true;
+        });
+      },
+    );
+  }
+
+  @override
   void update(double dt) {
     if (celular) {
       celular = false;
@@ -64,47 +106,6 @@ class RorizFriend extends SimpleEnemy
       runRandomMovement(dt);
     }
     super.update(dt);
-  }
-
-  @override
-  void onTap() {
-    seePlayer(
-        radiusVision: 64,
-        notObserved: () => canMove = true,
-        observed: (value) {
-          FollowerWidget.remove('dados');
-          FollowerWidget.remove('identifyRoriz');
-          canMove = false;
-          animation?.play(SimpleAnimationEnum.idleDown);
-          var say = ConversasNormais(
-              spriteFriend: RorizSpriteSheet.heroIdDown.asWidget(),
-              spriteHero: HeroSpriteSheet.heroIdDown.asWidget());
-          TalkDialog.show(context, [
-            ...say.talkNormal('Fala meu Gigante favorito!', 'Bom dia, Muna!'),
-            ...say.talkNormal('Tô precisando de uns dados para um sistema.',
-                'Legal! o que vocês vão fazer?'),
-            ...say.talkNormal(
-                'Um sistema para o chefe, vc tem alguns dados que pode compartilhar?',
-                'Tenho sim, deixa eu ver aqui no celular ...')
-          ], onFinish: () {
-            celular = true;
-            if (!FollowerWidget.isVisible('dados')) {
-              FollowerWidget.show(
-                  identify: 'dados',
-                  context: context,
-                  align: alignDados,
-                  target: this,
-                  child: const PopUpDadosWidget(
-                    action: "Quais dados vc quer?",
-                    dado1: "Base do Pronampe para arrumar a esteira? 2 dados.",
-                    dado2:
-                        "Base do Microcrédito para um portal de acompanhamento? 1 dado.",
-                    dado3:
-                        "Base dos melhores posicionados no varejo PJ? 1 dados.",
-                  ));
-            }
-          });
-        });
   }
 
   @override

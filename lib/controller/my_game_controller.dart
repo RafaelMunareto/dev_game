@@ -11,7 +11,7 @@ class MyGameController extends GameComponent {
   bool endGame = false;
   bool gameOver = false;
   final int stage;
-
+  bool changeMusic = true;
   bool fimDoTimer = false;
   MyGameController(this.stage);
 
@@ -22,7 +22,16 @@ class MyGameController extends GameComponent {
   }
 
   @override
-  void update(double dt) {
+  void update(double dt) async {
+    if (timerinitial.progress.toStringAsFixed(2) == '0.50') {
+      await FlameAudio.bgm.stop();
+      FlameAudio.bgm.dispose();
+      FlameAudio.bgm.initialize();
+      FlameAudio.bgm.play('musica_ambiente_2.mp3', volume: 0.4);
+    } else if (timerinitial.progress.toStringAsFixed(2) == '0.70') {
+      await FlameAudio.bgm.stop();
+      FlameAudio.bgm.play('musica_ambiente_3.mp3', volume: 0.4);
+    }
     timerinitial.update(dt);
 
     if (timerinitial.finished && !fimDoTimer) {
