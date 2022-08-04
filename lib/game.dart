@@ -99,7 +99,7 @@ class _GameState extends State<Game> {
       player: GameHero(Vector2(400, 900)),
       overlayBuilderMap: {
         PlayerInterfacePontos.overlayKey: (context, game) =>
-            PlayerInterfacePontos(game: game)
+            PlayerInterfacePontos(game: game),
       },
       initialActiveOverlays: const [PlayerInterfacePontos.overlayKey],
       cameraConfig: CameraConfig(

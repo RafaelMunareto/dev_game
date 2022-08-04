@@ -3,16 +3,21 @@ import 'package:dev_game/friends/cadu/cadu_sprite_sheet.dart';
 import 'package:dev_game/friends/rafa/rafa_sprit_sheet.dart';
 import 'package:dev_game/player/hero_sprint_sheet.dart';
 import 'package:dev_game/utils/constantes.dart';
+import 'package:dev_game/utils/conversas/conversas_normais.dart';
+import 'package:dev_game/utils/widgets/action_friend/popUpProcessamento.dart';
 import 'package:dev_game/utils/widgets/comum/identity_widget.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 
-class RafaFriend extends SimplePlayer
+class RafaFriend extends SimpleEnemy
     with
         ObjectCollision,
         Lighting,
         AutomaticRandomMovement,
         TapGesture,
         MouseGesture {
+  bool canMove = true;
+
   RafaFriend(Vector2 position)
       : super(
             position: position,
@@ -50,35 +55,75 @@ class RafaFriend extends SimplePlayer
   }
 
   @override
+  void onTap() {
+    seePlayer(
+      radiusVision: 72,
+      observed: (value) {
+        canMove = false;
+        FollowerWidget.remove('processamento');
+        FollowerWidget.remove('identityRafa');
+
+        animation?.play(SimpleAnimationEnum.idleDown);
+        var say = ConversasNormais(
+            spriteFriend: RafaSpriteSheet.heroIdDown.asWidget(),
+            spriteHero: HeroSpriteSheet.heroIdDown.asWidget());
+        TalkDialog.show(context, [
+          ...say.talkNormal('E aí Rafinha', 'E aí, Muna!'),
+          ...say.talkNormal(
+              'Como tá aí?',
+              dados == 0
+                  ? 'Precisamos de alguns dados para processar, fiquei sabendo que o Roriz tem algum.'
+                  : 'Quer que eu processe os $dados dados ?'),
+        ], onFinish: () {
+          if (!FollowerWidget.isVisible('processamento') && dados > 0) {
+            FollowerWidget.show(
+                identify: 'processamento',
+                context: context,
+                align: alignProcessamento,
+                target: this,
+                child: const PopUpProcessamentoWidget());
+          }
+          canMove = true;
+        });
+      },
+    );
+  }
+
+  @override
   void update(double dt) {
-    runRandomMovement(dt);
+    if (processamentoAction) {
+      life = (timerProcessamento.progress * 100);
+      if (timerProcessamento.progress == 1) {
+        processamentoAction = false;
+        FlameAudio.play('processamento_sound.mp3');
+        processados = dados;
+        dados = 0;
+      }
+    }
+    seePlayer(
+        observed: (_) {},
+        notObserved: () {
+          if (canMove) {
+            runRandomMovement(dt);
+          }
+        });
+
+    timerProcessamento.update(dt);
     super.update(dt);
   }
 
   @override
-  void onTap() {
-    TalkDialog.show(context, [
-      Say(
-          text: [
-            const TextSpan(text: "E aí Muna!"),
-          ],
-          person: SizedBox(
-            height: 150,
-            width: 150,
-            child: RafaSpriteSheet.heroIdDown.asWidget(),
-          ),
-          personSayDirection: PersonSayDirection.RIGHT),
-      Say(
-          text: [
-            const TextSpan(text: "E aí Rafinha?"),
-          ],
-          person: SizedBox(
-            height: 150,
-            width: 150,
-            child: HeroSpriteSheet.heroIdDown.asWidget(),
-          ),
-          personSayDirection: PersonSayDirection.RIGHT)
-    ]);
+  void render(Canvas canvas) {
+    if (processamentoAction) {
+      drawDefaultLifeBar(
+        canvas,
+        borderWidth: 2,
+        width: 30,
+        height: 5,
+        align: const Offset(0, -5),
+      );
+    }
+    super.render(canvas);
   }
 
   @override

@@ -3,24 +3,17 @@ import 'package:dev_game/utils/constantes.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 
-class PopUpDadosWidget extends StatefulWidget {
-  final String action;
-  final String dado1;
-  final String dado2;
-  final String dado3;
-  const PopUpDadosWidget(
-      {Key? key,
-      required this.action,
-      required this.dado1,
-      required this.dado2,
-      required this.dado3})
-      : super(key: key);
+class PopUpProcessamentoWidget extends StatefulWidget {
+  const PopUpProcessamentoWidget({
+    Key? key,
+  }) : super(key: key);
 
   @override
-  State<PopUpDadosWidget> createState() => _PopUpDadosWidgetState();
+  State<PopUpProcessamentoWidget> createState() =>
+      _PopUpProcessamentoWidgetState();
 }
 
-class _PopUpDadosWidgetState extends State<PopUpDadosWidget> {
+class _PopUpProcessamentoWidgetState extends State<PopUpProcessamentoWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -40,26 +33,9 @@ class _PopUpDadosWidgetState extends State<PopUpDadosWidget> {
                     ),
                     Wrap(
                       children: [
-                        Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              widget.action,
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                  color: Colors.blue),
-                            ),
-                          ),
-                        ),
-                        linha(widget.dado1,
-                            '-1 Clima, -1m Tempo, 0 Aprendizado, +1 Qualidade'),
-                        linha(widget.dado2,
-                            '0 Clima, 0 Tempo, 0 Aprendizado, 0 Qualidade'),
-                        linha(widget.dado3,
-                            '1 Clima, 0 Tempo, 0 Aprendizado, -1 Qualidade'),
+                        linha('Processar os $dados dados.', '-1 min de tempo.'),
                         linha(
-                            'Nenhum deles',
+                            'Não',
                             ''
                                 ''),
                         const SizedBox(
@@ -120,27 +96,12 @@ class _PopUpDadosWidgetState extends State<PopUpDadosWidget> {
                       ))),
                   onPressed: () {
                     setState(() {
-                      if (widget.dado1 != '') {
-                        clima = clima - 1;
-                        setTempo(1);
-                        aprendizado = aprendizado + 0;
-                        qualidade = qualidade + 1;
-                        dados = dados + 2;
+                      if (descricao != "") {
+                        timerProcessamento = Timer(dados * 60);
+                        timerProcessamento.start();
+                        processamentoAction = true;
+                        FollowerWidget.remove('processamento');
                       }
-                      if (widget.dado2 != '') {
-                        dados = dados + 1;
-                      }
-                      if (widget.dado3 != '') {
-                        clima = clima + 1;
-                        //tempo = tempo + ;
-                        aprendizado = aprendizado + 0;
-                        qualidade = qualidade - 1;
-                        dados = dados - 1;
-                      }
-
-                      FlameAudio.play('dados_sound.mp3');
-                      FollowerWidget.remove('dados');
-                      rorizEmbora = true;
                     });
                   },
                   child: const Text('Selecionar')),

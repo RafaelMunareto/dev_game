@@ -1,5 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:async' as async;
+
 import 'package:bonfire/bonfire.dart';
 import 'package:dev_game/friends/roriz/roriz_sprite_sheet.dart';
 import 'package:dev_game/player/hero_sprint_sheet.dart';
@@ -62,14 +64,15 @@ class RorizFriend extends SimpleEnemy
         FollowerWidget.remove('dados');
         FollowerWidget.remove('identifyRoriz');
         canMove = false;
+
         animation?.play(SimpleAnimationEnum.idleDown);
         var say = ConversasNormais(
             spriteFriend: RorizSpriteSheet.heroIdDown.asWidget(),
             spriteHero: HeroSpriteSheet.heroIdDown.asWidget());
         TalkDialog.show(context, [
-          ...say.talkNormal('Fala meu Gigante favorito!', 'Bom dia, Muna!'),
-          ...say.talkNormal('Tô precisando de uns dados para um sistema.',
-              'Legal! o que vocês vão fazer?'),
+          // ...say.talkNormal('Fala meu Gigante favorito!', 'Bom dia, Muna!'),
+          // ...say.talkNormal('Tô precisando de uns dados para um sistema.',
+          //     'Legal! o que vocês vão fazer?'),
           ...say.talkNormal(
               'Um sistema para o chefe, vc tem alguns dados que pode compartilhar?',
               'Tenho sim, deixa eu ver aqui no celular ...')
@@ -102,9 +105,14 @@ class RorizFriend extends SimpleEnemy
       celular = false;
       animation!.playOnce(RorizSpriteSheet.celular);
     }
-    if (canMove) {
-      runRandomMovement(dt);
-    }
+    seePlayer(
+        observed: (_) {},
+        notObserved: () {
+          if (canMove) {
+            runRandomMovement(dt);
+          }
+        });
+
     super.update(dt);
   }
 

@@ -2,6 +2,7 @@ import 'package:bonfire/base/bonfire_game_interface.dart';
 import 'package:bonfire/bonfire.dart';
 import 'package:dev_game/player/game_hero.dart';
 import 'package:dev_game/utils/constantes.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 
 class ListTileActionWidget extends StatefulWidget {
@@ -101,6 +102,7 @@ class _ListTileActionWidgetState extends State<ListTileActionWidget> {
                       timerinitial.reset();
                       timerinitial =
                           Timer(currentTime - (int.parse(widget.tempo) * 60));
+                      FlameAudio.play('risada.mp3');
                       FollowerWidget.remove('actionPlayer');
                     });
                   },

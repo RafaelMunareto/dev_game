@@ -16,22 +16,24 @@ class MyGameController extends GameComponent {
   MyGameController(this.stage);
 
   @override
-  Future<void>? onLoad() async {
-    FlameAudio.bgm.play('musica_ambiente.mp3', volume: 0.4);
-    return super.onLoad();
+  onLoad() async {
+    FlameAudio.bgm.play('musica_ambiente_2.mp3', volume: 0.4);
+
+    super.onLoad();
   }
 
   @override
   void update(double dt) async {
-    if (timerinitial.progress.toStringAsFixed(2) == '0.50') {
-      await FlameAudio.bgm.stop();
-      FlameAudio.bgm.dispose();
-      FlameAudio.bgm.initialize();
-      FlameAudio.bgm.play('musica_ambiente_2.mp3', volume: 0.4);
-    } else if (timerinitial.progress.toStringAsFixed(2) == '0.70') {
-      await FlameAudio.bgm.stop();
-      FlameAudio.bgm.play('musica_ambiente_3.mp3', volume: 0.4);
-    }
+    // if (timerinitial.progress.toStringAsFixed(2) == '0.05') {
+    //   FlameAudio.bgm.play('musica_ambiente.mp3', volume: 0.4);
+    // }
+    // if (timerinitial.progress.toStringAsFixed(2) == '0.35') {
+    //   FlameAudio.bgm.play('musica_ambiente_2.mp3', volume: 0.4);
+    // }
+    // if (timerinitial.progress.toStringAsFixed(2) == '0.70') {
+    //   FlameAudio.bgm.play('musica_ambiente_3.mp3', volume: 0.4);
+    // }
+
     timerinitial.update(dt);
 
     if (timerinitial.finished && !fimDoTimer) {

@@ -1,6 +1,7 @@
 import 'dart:async' as async;
 import 'package:bonfire/bonfire.dart';
 import 'package:dev_game/utils/constantes.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 
 class PlayerInterfacePontos extends StatefulWidget {
@@ -16,6 +17,20 @@ class _PlayerInterfacePontosState extends State<PlayerInterfacePontos> {
   late async.Timer _lifeTime;
   Color color = Colors.green;
   double time = 0;
+  var colorActionProcessados = false;
+  var colorActionDados = false;
+  var colorActionPaginas = false;
+  var colorActionClima = false;
+  var colorActionQualidade = false;
+  var colorActionAprendizado = false;
+
+  var processadosLocal = processados;
+  var dadosLocal = dados;
+  var paginasLocal = paginas;
+  var climaLocal = clima;
+  var aprendizadoLocal = aprendizado;
+  var qualidadeLocal = qualidade;
+
   @override
   void initState() {
     _lifeTime =
@@ -55,18 +70,18 @@ class _PlayerInterfacePontosState extends State<PlayerInterfacePontos> {
                 children: [
                   componentCustomVelocidade(
                       'assets/images/player/velocidade.png'),
-                  componentCustom(
-                      'assets/images/player/dados.png', '$dados dados'),
+                  componentCustom('assets/images/player/dados.png',
+                      '$dados dados', colorActionDados),
                   componentCustom('assets/images/player/processamento.png',
-                      '$processados dados processados'),
+                      '$processados dados processados', colorActionProcessados),
                   componentCustom('assets/images/player/paginas.png',
-                      '$paginas Páginas criadas'),
-                  componentCustom(
-                      'assets/images/player/clima.png', '$clima clima'),
+                      '$paginas Páginas criadas', colorActionPaginas),
+                  componentCustom('assets/images/player/clima.png',
+                      '$clima clima', colorActionClima),
                   componentCustom('assets/images/player/qualidade.png',
-                      '$qualidade qualidade'),
+                      '$qualidade qualidade', colorActionQualidade),
                   componentCustom('assets/images/player/estudo.png',
-                      '$aprendizado aprendizado'),
+                      '$aprendizado aprendizado', colorActionAprendizado),
                 ],
               ),
             ),
@@ -112,13 +127,14 @@ class _PlayerInterfacePontosState extends State<PlayerInterfacePontos> {
     );
   }
 
-  Widget componentCustom(String image, String texto) {
+  Widget componentCustom(String image, String texto, bool testeColor) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(4, 4, 4, 0),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         decoration: BoxDecoration(
-            color: Colors.black87, borderRadius: BorderRadius.circular(5)),
+            color: testeColor ? Colors.orange : Colors.black87,
+            borderRadius: BorderRadius.circular(5)),
         child: Row(children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -223,7 +239,53 @@ class _PlayerInterfacePontosState extends State<PlayerInterfacePontos> {
     );
   }
 
+  colorActionTimer() {
+    if (dadosLocal != dados) {
+      colorActionDados = true;
+      async.Timer(const Duration(seconds: 2), () {
+        colorActionDados = false;
+        dadosLocal = dados;
+      });
+    }
+    if (processadosLocal != processados) {
+      colorActionProcessados = true;
+      async.Timer(const Duration(seconds: 2), () {
+        colorActionProcessados = false;
+        processadosLocal = processados;
+      });
+    }
+    if (paginasLocal != paginas) {
+      colorActionPaginas = true;
+      async.Timer(const Duration(seconds: 2), () {
+        colorActionPaginas = false;
+        paginasLocal = paginas;
+      });
+    }
+    if (climaLocal != clima) {
+      colorActionClima = true;
+      async.Timer(const Duration(seconds: 2), () {
+        colorActionClima = false;
+        climaLocal = clima;
+      });
+    }
+    if (qualidadeLocal != qualidade) {
+      colorActionQualidade = true;
+      async.Timer(const Duration(seconds: 2), () {
+        colorActionQualidade = false;
+        qualidadeLocal = qualidade;
+      });
+    }
+    if (aprendizadoLocal != aprendizado) {
+      colorActionAprendizado = true;
+      async.Timer(const Duration(seconds: 2), () {
+        colorActionAprendizado = false;
+        aprendizadoLocal = aprendizado;
+      });
+    }
+  }
+
   void _verifyTime(async.Timer timer) {
+    colorActionTimer();
     if (time != (timerinitial.progress * 100)) {
       if (mounted) {
         setState(() {
