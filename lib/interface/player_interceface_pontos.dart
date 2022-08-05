@@ -37,6 +37,10 @@ class _PlayerInterfacePontosState extends State<PlayerInterfacePontos> {
     super.initState();
   }
 
+  faseColorMeta(notaAtual, notaSimulada) {
+    return notaAtual >= notaSimulada;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -70,21 +74,32 @@ class _PlayerInterfacePontosState extends State<PlayerInterfacePontos> {
                   componentCustomVelocidade(
                       'assets/images/player/velocidade.png'),
                   componentCustom('assets/images/player/dados.png',
-                      '${fase.dados} dados', colorActionDados),
+                      '${fase.dados} dados', colorActionDados, false),
                   componentCustom(
                       'assets/images/player/processamento.png',
                       '${fase.processados} dados processados',
-                      colorActionProcessados),
-                  componentCustom('assets/images/player/paginas.png',
-                      '${fase.paginas} Páginas criadas', colorActionPaginas),
-                  componentCustom('assets/images/player/clima.png',
-                      '${fase.clima} clima', colorActionClima),
-                  componentCustom('assets/images/player/qualidade.png',
-                      '${fase.qualidade} qualidade', colorActionQualidade),
+                      colorActionProcessados,
+                      false),
+                  componentCustom(
+                      'assets/images/player/paginas.png',
+                      '${fase.paginas} Páginas criadas',
+                      colorActionPaginas,
+                      faseColorMeta(fase.paginas, faseAtual.paginas)),
+                  componentCustom(
+                      'assets/images/player/clima.png',
+                      '${fase.clima} clima',
+                      colorActionClima,
+                      faseColorMeta(fase.clima, faseAtual.clima)),
+                  componentCustom(
+                      'assets/images/player/qualidade.png',
+                      '${fase.qualidade} qualidade',
+                      colorActionQualidade,
+                      faseColorMeta(fase.qualidade, faseAtual.qualidade)),
                   componentCustom(
                       'assets/images/player/estudo.png',
                       '${fase.aprendizado} aprendizado',
-                      colorActionAprendizado),
+                      colorActionAprendizado,
+                      faseColorMeta(fase.aprendizado, faseAtual.aprendizado)),
                 ],
               ),
             ),
@@ -130,13 +145,18 @@ class _PlayerInterfacePontosState extends State<PlayerInterfacePontos> {
     );
   }
 
-  Widget componentCustom(String image, String texto, bool testeColor) {
+  Widget componentCustom(
+      String image, String texto, bool testeColor, bool meta) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(4, 4, 4, 0),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         decoration: BoxDecoration(
-            color: testeColor ? Colors.orange : Colors.black87,
+            color: testeColor
+                ? Colors.orange
+                : meta
+                    ? Colors.blue
+                    : Colors.black87,
             borderRadius: BorderRadius.circular(5)),
         child: Row(children: [
           Padding(
