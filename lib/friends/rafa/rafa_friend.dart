@@ -57,10 +57,9 @@ class RafaFriend extends SimpleEnemy
       observed: (value) {
         FollowerWidget.remove('processamento');
         FollowerWidget.remove('identityRafa');
-
-        animation?.play(SimpleAnimationEnum.idleDown);
+        animation?.playOnce(RafaSpriteSheet.cadeiraDown);
         var say = ConversasNormais(
-            spriteFriend: RafaSpriteSheet.heroIdDown.asWidget(),
+            spriteFriend: RafaSpriteSheet.cadeiraDown.asWidget(),
             spriteHero: HeroSpriteSheet.heroIdDown.asWidget());
         TalkDialog.show(context, [
           ...say.talkNormal('E aí Rafinha', 'E aí, Muna!'),
