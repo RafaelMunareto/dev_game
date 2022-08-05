@@ -19,6 +19,7 @@ import 'package:dev_game/friends/roriz/roriz_friend.dart';
 import 'package:dev_game/friends/silvia/silvia_friend.dart';
 import 'package:dev_game/friends/talmon/talmon_friend.dart';
 import 'package:dev_game/friends/thaisa/thaisa_friend.dart';
+import 'package:dev_game/friends/thiago/thiago_friend.dart';
 import 'package:dev_game/interface/player_interceface_pontos.dart';
 import 'package:dev_game/player/game_hero.dart';
 import 'package:dev_game/utils/constantes.dart';
@@ -92,6 +93,7 @@ class _GameState extends State<Game> {
             'silvia': (properties) => SilviaFriend(properties.position),
             'cadu': (properties) => CaduFriend(properties.position),
             'roriz': (properties) => RorizFriend(properties.position),
+            'thiago': (properties) => ThiagoFriend(properties.position),
             'cadeira_munareto': ((properties) =>
                 CadeiraMunareto(properties.position)),
             'cadeira_rodrigo': ((properties) =>
