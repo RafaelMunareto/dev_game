@@ -1,6 +1,8 @@
 import 'package:bonfire/bonfire.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:dev_game/game.dart';
+import 'package:dev_game/utils/fase_model.dart';
 import 'package:flame/timer.dart' as flame;
+import 'package:flutter/material.dart';
 
 const double tileSize = 16;
 const double tileSizePerson = 32;
@@ -21,6 +23,7 @@ bool processamentoAction = false;
 bool paginasAction = false;
 bool rorizEmbora = false;
 bool infoAction = false;
+bool optionsAction = false;
 
 setTempo(int tempo) {
   var currentTime = timerinitial.limit;
@@ -28,10 +31,19 @@ setTempo(int tempo) {
   timerinitial = Timer(currentTime - (tempo * 60));
 }
 
-var dados = 0;
-var processados = 0;
-var paginas = 0;
-var clima = 0;
-var qualidade = 0;
-var aprendizado = 0;
-var tempo = 0;
+FaseModel fase = FaseModel();
+FaseModel faseAtual =
+    FaseModel(paginas: 1, clima: 1, qualidade: 1, aprendizado: 2, dados: 2);
+
+void goHome(context) {
+  timerinitial.reset();
+  timerinitial = timeinitialReset;
+  fase = FaseModel();
+  timerinitial.start();
+  Navigator.of(context).pushAndRemoveUntil(
+    MaterialPageRoute(builder: (context) {
+      return const Game();
+    }),
+    (route) => false,
+  );
+}

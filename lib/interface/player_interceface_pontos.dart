@@ -1,7 +1,6 @@
 import 'dart:async' as async;
 import 'package:bonfire/bonfire.dart';
 import 'package:dev_game/utils/constantes.dart';
-import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 
 class PlayerInterfacePontos extends StatefulWidget {
@@ -14,7 +13,7 @@ class PlayerInterfacePontos extends StatefulWidget {
 }
 
 class _PlayerInterfacePontosState extends State<PlayerInterfacePontos> {
-  late async.Timer _lifeTime;
+  late async.Timer lifeTime;
   Color color = Colors.green;
   double time = 0;
   var colorActionProcessados = false;
@@ -24,16 +23,16 @@ class _PlayerInterfacePontosState extends State<PlayerInterfacePontos> {
   var colorActionQualidade = false;
   var colorActionAprendizado = false;
 
-  var processadosLocal = processados;
-  var dadosLocal = dados;
-  var paginasLocal = paginas;
-  var climaLocal = clima;
-  var aprendizadoLocal = aprendizado;
-  var qualidadeLocal = qualidade;
+  var processadosLocal = fase.processados;
+  var dadosLocal = fase.dados;
+  var paginasLocal = fase.paginas;
+  var climaLocal = fase.clima;
+  var aprendizadoLocal = fase.aprendizado;
+  var qualidadeLocal = fase.qualidade;
 
   @override
   void initState() {
-    _lifeTime =
+    lifeTime =
         async.Timer.periodic(const Duration(milliseconds: 100), _verifyTime);
     super.initState();
   }
@@ -71,17 +70,21 @@ class _PlayerInterfacePontosState extends State<PlayerInterfacePontos> {
                   componentCustomVelocidade(
                       'assets/images/player/velocidade.png'),
                   componentCustom('assets/images/player/dados.png',
-                      '$dados dados', colorActionDados),
-                  componentCustom('assets/images/player/processamento.png',
-                      '$processados dados processados', colorActionProcessados),
+                      '${fase.dados} dados', colorActionDados),
+                  componentCustom(
+                      'assets/images/player/processamento.png',
+                      '${fase.processados} dados processados',
+                      colorActionProcessados),
                   componentCustom('assets/images/player/paginas.png',
-                      '$paginas Páginas criadas', colorActionPaginas),
+                      '${fase.paginas} Páginas criadas', colorActionPaginas),
                   componentCustom('assets/images/player/clima.png',
-                      '$clima clima', colorActionClima),
+                      '${fase.clima} clima', colorActionClima),
                   componentCustom('assets/images/player/qualidade.png',
-                      '$qualidade qualidade', colorActionQualidade),
-                  componentCustom('assets/images/player/estudo.png',
-                      '$aprendizado aprendizado', colorActionAprendizado),
+                      '${fase.qualidade} qualidade', colorActionQualidade),
+                  componentCustom(
+                      'assets/images/player/estudo.png',
+                      '${fase.aprendizado} aprendizado',
+                      colorActionAprendizado),
                 ],
               ),
             ),
@@ -222,19 +225,22 @@ class _PlayerInterfacePontosState extends State<PlayerInterfacePontos> {
   }
 
   Widget configuracoes() {
-    return Padding(
-      padding: const EdgeInsets.all(4.0),
-      child: Container(
-        decoration: BoxDecoration(
-            color: Colors.black38, borderRadius: BorderRadius.circular(120)),
-        child: const Padding(
-          padding: EdgeInsets.all(6.0),
-          child: MouseRegion(
-            cursor: SystemMouseCursors.click,
-            child: Icon(
-              Icons.settings,
-              size: 32,
-              color: Colors.white,
+    return GestureDetector(
+      onTap: () => optionsAction = true,
+      child: Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: Container(
+          decoration: BoxDecoration(
+              color: Colors.black38, borderRadius: BorderRadius.circular(120)),
+          child: const Padding(
+            padding: EdgeInsets.all(6.0),
+            child: MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: Icon(
+                Icons.settings,
+                size: 32,
+                color: Colors.white,
+              ),
             ),
           ),
         ),
@@ -243,46 +249,46 @@ class _PlayerInterfacePontosState extends State<PlayerInterfacePontos> {
   }
 
   colorActionTimer() {
-    if (dadosLocal != dados) {
+    if (dadosLocal != fase.dados) {
       colorActionDados = true;
       async.Timer(const Duration(seconds: 2), () {
         colorActionDados = false;
-        dadosLocal = dados;
+        dadosLocal = fase.dados;
       });
     }
-    if (processadosLocal != processados) {
+    if (processadosLocal != fase.processados) {
       colorActionProcessados = true;
       async.Timer(const Duration(seconds: 2), () {
         colorActionProcessados = false;
-        processadosLocal = processados;
+        processadosLocal = fase.processados;
       });
     }
-    if (paginasLocal != paginas) {
+    if (paginasLocal != fase.paginas) {
       colorActionPaginas = true;
       async.Timer(const Duration(seconds: 2), () {
         colorActionPaginas = false;
-        paginasLocal = paginas;
+        paginasLocal = fase.paginas;
       });
     }
-    if (climaLocal != clima) {
+    if (climaLocal != fase.clima) {
       colorActionClima = true;
       async.Timer(const Duration(seconds: 2), () {
         colorActionClima = false;
-        climaLocal = clima;
+        climaLocal = fase.clima;
       });
     }
-    if (qualidadeLocal != qualidade) {
+    if (qualidadeLocal != fase.qualidade) {
       colorActionQualidade = true;
       async.Timer(const Duration(seconds: 2), () {
         colorActionQualidade = false;
-        qualidadeLocal = qualidade;
+        qualidadeLocal = fase.qualidade;
       });
     }
-    if (aprendizadoLocal != aprendizado) {
+    if (aprendizadoLocal != fase.aprendizado) {
       colorActionAprendizado = true;
       async.Timer(const Duration(seconds: 2), () {
         colorActionAprendizado = false;
-        aprendizadoLocal = aprendizado;
+        aprendizadoLocal = fase.aprendizado;
       });
     }
   }

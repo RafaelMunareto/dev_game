@@ -82,19 +82,13 @@ class FabinhoFriend extends SimplePlayer
   }
 
   @override
-  void onTapCancel() {
-    // TODO: implement onTapCancel
-  }
+  void onTapCancel() {}
 
   @override
-  void onTapDown(int pointer, Vector2 position) {
-    // TODO: implement onTapDown
-  }
+  void onTapDown(int pointer, Vector2 position) {}
 
   @override
-  void onTapUp(int pointer, Vector2 position) {
-    // TODO: implement onTapUp
-  }
+  void onTapUp(int pointer, Vector2 position) {}
   @override
   void onHoverEnter(int pointer, Vector2 position) {
     if (!FollowerWidget.isVisible('identifyFabinho')) {
@@ -116,27 +110,17 @@ class FabinhoFriend extends SimplePlayer
   }
 
   @override
-  void onMouseCancel() {
-    // TODO: implement onMouseCancel
-  }
+  void onMouseCancel() {}
 
   @override
-  void onMouseTapLeft() {
-    // TODO: implement onMouseTapLeft
-  }
+  void onMouseTapLeft() {}
 
   @override
-  void onMouseTapMiddle() {
-    // TODO: implement onMouseTapMiddle
-  }
+  void onMouseTapMiddle() {}
 
   @override
-  void onMouseTapRight() {
-    // TODO: implement onMouseTapRight
-  }
+  void onMouseTapRight() {}
 
   @override
-  void onScroll(int pointer, Vector2 position, Vector2 scrollDelta) {
-    // TODO: implement onScroll
-  }
+  void onScroll(int pointer, Vector2 position, Vector2 scrollDelta) {}
 }

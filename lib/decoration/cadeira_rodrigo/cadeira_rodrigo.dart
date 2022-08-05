@@ -1,13 +1,9 @@
 // ignore_for_file: unused_element
 
 import 'package:bonfire/bonfire.dart';
-import 'package:dev_game/decoration/cadeira_munareto/cadeira_munareto_decoration_sprit_sheet.dart';
 import 'package:dev_game/decoration/cadeira_rodrigo/cadeira_rodrigo_decoration_sprit_sheet.dart';
 import 'package:dev_game/friends/rodrigo/rodrigo_friend.dart';
-import 'package:dev_game/player/game_hero.dart';
 import 'package:dev_game/utils/constantes.dart';
-import 'package:dev_game/utils/widgets/action_friend/popUpPaginas.dart';
-import 'package:dev_game/utils/widgets/action_player/action_player.dart';
 
 import 'package:flutter/material.dart';
 

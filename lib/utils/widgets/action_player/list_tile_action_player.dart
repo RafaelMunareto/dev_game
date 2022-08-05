@@ -1,6 +1,5 @@
 import 'package:bonfire/base/bonfire_game_interface.dart';
 import 'package:bonfire/bonfire.dart';
-import 'package:dev_game/player/game_hero.dart';
 import 'package:dev_game/utils/constantes.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
@@ -93,11 +92,14 @@ class _ListTileActionWidgetState extends State<ListTileActionWidget> {
                       ))),
                   onPressed: () {
                     setState(() {
-                      aprendizado = aprendizado + int.parse(widget.aprendizado);
-                      tempo = tempo + int.parse(widget.tempo);
-                      qualidade = aprendizado + int.parse(widget.qualidade);
-                      aprendizado = aprendizado + int.parse(widget.aprendizado);
-                      clima = clima + int.parse(widget.clima);
+                      fase.aprendizado =
+                          fase.aprendizado + int.parse(widget.aprendizado);
+                      fase.tempo = fase.tempo + int.parse(widget.tempo);
+                      fase.qualidade =
+                          fase.aprendizado + int.parse(widget.qualidade);
+                      fase.aprendizado =
+                          fase.aprendizado + int.parse(widget.aprendizado);
+                      fase.clima = fase.clima + int.parse(widget.clima);
                       var currentTime = timerinitial.limit;
                       timerinitial.reset();
                       timerinitial =

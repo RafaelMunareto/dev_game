@@ -1,8 +1,6 @@
-import 'dart:async';
-
 import 'package:bonfire/bonfire.dart';
-import 'package:dev_game/game.dart';
-import 'package:dev_game/pages/home_page.dart';
+import 'package:dev_game/controller/info.dart';
+import 'package:dev_game/controller/options.dart';
 import 'package:dev_game/utils/constantes.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +40,12 @@ class MyGameController extends GameComponent {
       infoAction = false;
       showDialogInicio();
     }
+    if (optionsAction) {
+      optionsAction = false;
+      showDialogOptions();
+    }
     if (timerinitial.finished && !fimDoTimer) {
+      FlameAudio.play('perdeu_sound.mp3');
       fimDoTimer = true;
       showDialog(
         context: context,
@@ -50,15 +53,15 @@ class MyGameController extends GameComponent {
           return AlertDialog(
             backgroundColor: Colors.black54,
             content: const Text(
-              'Acabou o jogo',
+              'Você Perdeu !!!',
               style: TextStyle(color: Colors.white),
             ),
             actions: [
               TextButton(
                 onPressed: () {
-                  _goHome();
+                  goHome(context);
                 },
-                child: const Text('Reiniciar'),
+                child: const Text('Recomeçar'),
               )
             ],
           );
@@ -149,128 +152,33 @@ class MyGameController extends GameComponent {
   //   );
   // }
 
-  void _goHome() {
-    timerinitial.reset();
-    timerinitial = timeinitialReset;
-    dados = 0;
-    processados = 0;
-    paginas = 0;
-    clima = 0;
-    qualidade = 0;
-    aprendizado = 0;
-    tempo = 0;
-    timerinitial.start();
-    Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(builder: (context) {
-        return const Game();
-      }),
-      (route) => false,
-    );
-  }
-
   showDialogInicio() {
     showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
           backgroundColor: Colors.black54,
-          content: SizedBox(
-            height: 250,
-            width: 500,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Center(
-                      child: Text(
-                    'Missão de hoje',
-                    style: TextStyle(color: Colors.white, fontSize: 24),
-                  )),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Wrap(
-                    alignment: WrapAlignment.spaceBetween,
-                    children: const [
-                      Icon(
-                        Icons.sunny,
-                        color: Colors.amber,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'Você deve alcançar o mínimo de 1 no clima.',
-                        style: TextStyle(color: Colors.white, fontSize: 14),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Wrap(
-                    alignment: WrapAlignment.spaceBetween,
-                    children: const [
-                      Icon(
-                        Icons.book,
-                        color: Colors.blue,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'Você deve alcançar o mínimo de 1 no aprendizado.',
-                        style: TextStyle(color: Colors.white, fontSize: 14),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Wrap(
-                    alignment: WrapAlignment.spaceBetween,
-                    children: const [
-                      Icon(
-                        Icons.verified,
-                        color: Colors.red,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'Você deve alcançar a qualidade 2.',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Wrap(
-                    alignment: WrapAlignment.spaceBetween,
-                    children: const [
-                      Icon(
-                        Icons.dataset_outlined,
-                        color: Colors.green,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'Criar uma página com o mínimo de 2 dados processados.',
-                        style: TextStyle(color: Colors.white, fontSize: 14),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
+          content: const InfoWidget(),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Fechar'),
+            )
+          ],
+        );
+      },
+    );
+  }
+
+  showDialogOptions() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: Colors.black54,
+          content: const OptionsWidget(),
           actions: [
             TextButton(
               onPressed: () {

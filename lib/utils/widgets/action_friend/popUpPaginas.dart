@@ -1,6 +1,7 @@
+// ignore_for_file: file_names
+
 import 'package:bonfire/bonfire.dart';
 import 'package:dev_game/utils/constantes.dart';
-import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 
 class PopUpPaginasWidget extends StatefulWidget {

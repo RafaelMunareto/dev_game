@@ -133,27 +133,17 @@ class GameHero extends SimplePlayer
   }
 
   @override
-  void onMouseCancel() {
-    // TODO: implement onMouseCancel
-  }
+  void onMouseCancel() {}
 
   @override
-  void onMouseTapLeft() {
-    // TODO: implement onMouseTapLeft
-  }
+  void onMouseTapLeft() {}
 
   @override
-  void onMouseTapMiddle() {
-    // TODO: implement onMouseTapMiddle
-  }
+  void onMouseTapMiddle() {}
 
   @override
-  void onMouseTapRight() {
-    // TODO: implement onMouseTapRight
-  }
+  void onMouseTapRight() {}
 
   @override
-  void onScroll(int pointer, Vector2 position, Vector2 scrollDelta) {
-    // TODO: implement onScroll
-  }
+  void onScroll(int pointer, Vector2 position, Vector2 scrollDelta) {}
 }

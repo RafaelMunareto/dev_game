@@ -1,7 +1,4 @@
 // ignore_for_file: use_build_context_synchronously
-
-import 'dart:async' as async;
-
 import 'package:bonfire/bonfire.dart';
 import 'package:dev_game/friends/roriz/roriz_sprite_sheet.dart';
 import 'package:dev_game/player/hero_sprint_sheet.dart';
@@ -117,19 +114,13 @@ class RorizFriend extends SimpleEnemy
   }
 
   @override
-  void onTapCancel() {
-    // TODO: implement onTapCancel
-  }
+  void onTapCancel() {}
 
   @override
-  void onTapDown(int pointer, Vector2 position) {
-    // TODO: implement onTapDown
-  }
+  void onTapDown(int pointer, Vector2 position) {}
 
   @override
-  void onTapUp(int pointer, Vector2 position) {
-    // TODO: implement onTapUp
-  }
+  void onTapUp(int pointer, Vector2 position) {}
   @override
   void onHoverEnter(int pointer, Vector2 position) {
     if (!FollowerWidget.isVisible('identifyRoriz')) {
@@ -151,27 +142,17 @@ class RorizFriend extends SimpleEnemy
   }
 
   @override
-  void onMouseCancel() {
-    // TODO: implement onMouseCancel
-  }
+  void onMouseCancel() {}
 
   @override
-  void onMouseTapLeft() {
-    // TODO: implement onMouseTapLeft
-  }
+  void onMouseTapLeft() {}
 
   @override
-  void onMouseTapMiddle() {
-    // TODO: implement onMouseTapMiddle
-  }
+  void onMouseTapMiddle() {}
 
   @override
-  void onMouseTapRight() {
-    // TODO: implement onMouseTapRight
-  }
+  void onMouseTapRight() {}
 
   @override
-  void onScroll(int pointer, Vector2 position, Vector2 scrollDelta) {
-    // TODO: implement onScroll
-  }
+  void onScroll(int pointer, Vector2 position, Vector2 scrollDelta) {}
 }

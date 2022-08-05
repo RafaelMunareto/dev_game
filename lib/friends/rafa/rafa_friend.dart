@@ -1,7 +1,4 @@
-import 'dart:async' as async;
-
 import 'package:bonfire/bonfire.dart';
-import 'package:dev_game/friends/cadu/cadu_sprite_sheet.dart';
 import 'package:dev_game/friends/rafa/rafa_sprit_sheet.dart';
 import 'package:dev_game/player/hero_sprint_sheet.dart';
 import 'package:dev_game/utils/constantes.dart';
@@ -67,12 +64,12 @@ class RafaFriend extends SimpleEnemy
               'Como tá aí?',
               !timerProcessamento.finished
                   ? 'Estou processandos os dados segura aí já estou acabando'
-                  : dados == 0
+                  : fase.dados == 0
                       ? 'Precisamos de alguns dados para processar, fiquei sabendo que o Roriz tem algum.'
-                      : 'Quer que eu processe esses $dados dados ?'),
+                      : 'Quer que eu processe esses ${fase.dados} dados ?'),
         ], onFinish: () {
           if (!FollowerWidget.isVisible('processamento') &&
-              dados > 0 &&
+              fase.dados > 0 &&
               timerProcessamento.finished) {
             FollowerWidget.show(
                 identify: 'processamento',
@@ -94,8 +91,8 @@ class RafaFriend extends SimpleEnemy
       if (timerProcessamento.progress == 1) {
         processamentoAction = false;
         FlameAudio.play('processamento_sound.mp3');
-        processados = dados;
-        dados = 0;
+        fase.processados = fase.dados;
+        fase.dados = 0;
       }
     }
     timerProcessamento.update(dt);
@@ -145,19 +142,13 @@ class RafaFriend extends SimpleEnemy
   }
 
   @override
-  void onTapCancel() {
-    // TODO: implement onTapCancel
-  }
+  void onTapCancel() {}
 
   @override
-  void onTapDown(int pointer, Vector2 position) {
-    // TODO: implement onTapDown
-  }
+  void onTapDown(int pointer, Vector2 position) {}
 
   @override
-  void onTapUp(int pointer, Vector2 position) {
-    // TODO: implement onTapUp
-  }
+  void onTapUp(int pointer, Vector2 position) {}
   @override
   void onHoverEnter(int pointer, Vector2 position) {
     if (!FollowerWidget.isVisible('identifyRafa')) {
@@ -179,27 +170,17 @@ class RafaFriend extends SimpleEnemy
   }
 
   @override
-  void onMouseCancel() {
-    // TODO: implement onMouseCancel
-  }
+  void onMouseCancel() {}
 
   @override
-  void onMouseTapLeft() {
-    // TODO: implement onMouseTapLeft
-  }
+  void onMouseTapLeft() {}
 
   @override
-  void onMouseTapMiddle() {
-    // TODO: implement onMouseTapMiddle
-  }
+  void onMouseTapMiddle() {}
 
   @override
-  void onMouseTapRight() {
-    // TODO: implement onMouseTapRight
-  }
+  void onMouseTapRight() {}
 
   @override
-  void onScroll(int pointer, Vector2 position, Vector2 scrollDelta) {
-    // TODO: implement onScroll
-  }
+  void onScroll(int pointer, Vector2 position, Vector2 scrollDelta) {}
 }

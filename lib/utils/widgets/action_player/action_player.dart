@@ -1,5 +1,4 @@
 import 'package:bonfire/base/bonfire_game_interface.dart';
-import 'package:dev_game/player/game_hero.dart';
 import 'package:dev_game/utils/widgets/action_player/list_tile_action_player.dart';
 import 'package:flutter/material.dart';
 

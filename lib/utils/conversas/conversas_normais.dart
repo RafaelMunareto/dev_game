@@ -1,4 +1,3 @@
-import 'package:bonfire/base/game_component.dart';
 import 'package:bonfire/bonfire.dart';
 import 'package:flutter/cupertino.dart';
 

@@ -71,11 +71,11 @@ class RodrigoFriend extends SimpleEnemy
               'Bora fazer uns trens aí.',
               !timerPaginas.finished && paginasAction
                   ? 'Tô fazendos as páginas, devo ter feito ${(timerPaginas.progress * 100).toStringAsFixed(0)} %'
-                  : processados == 0
+                  : fase.processados == 0
                       ? 'Precisamos processar alguns dados para fazer as páginas! Troca uma ideia com o Rafinha.'
                       : 'Quer que eu faça as páginas ?'),
         ], onFinish: () {
-          if (processados > 0) {
+          if (fase.processados > 0) {
             if (!FollowerWidget.isVisible('paginasRodrigo')) {
               FollowerWidget.show(
                   identify: 'paginasRodrigo',
@@ -109,8 +109,8 @@ class RodrigoFriend extends SimpleEnemy
       if (timerPaginas.progress == 1) {
         paginasAction = false;
         FlameAudio.play('paginas_sound.mp3');
-        paginas = processados;
-        processados = 0;
+        fase.paginas = fase.processados;
+        fase.processados = 0;
       }
     }
     if (movePositionRodrigoPaginas) {
@@ -121,19 +121,13 @@ class RodrigoFriend extends SimpleEnemy
   }
 
   @override
-  void onTapCancel() {
-    // TODO: implement onTapCancel
-  }
+  void onTapCancel() {}
 
   @override
-  void onTapDown(int pointer, Vector2 position) {
-    // TODO: implement onTapDown
-  }
+  void onTapDown(int pointer, Vector2 position) {}
 
   @override
-  void onTapUp(int pointer, Vector2 position) {
-    // TODO: implement onTapUp
-  }
+  void onTapUp(int pointer, Vector2 position) {}
   @override
   void onHoverEnter(int pointer, Vector2 position) {
     if (!FollowerWidget.isVisible('identifyRodrigo')) {
@@ -172,27 +166,17 @@ class RodrigoFriend extends SimpleEnemy
   }
 
   @override
-  void onMouseCancel() {
-    // TODO: implement onMouseCancel
-  }
+  void onMouseCancel() {}
 
   @override
-  void onMouseTapLeft() {
-    // TODO: implement onMouseTapLeft
-  }
+  void onMouseTapLeft() {}
 
   @override
-  void onMouseTapMiddle() {
-    // TODO: implement onMouseTapMiddle
-  }
+  void onMouseTapMiddle() {}
 
   @override
-  void onMouseTapRight() {
-    // TODO: implement onMouseTapRight
-  }
+  void onMouseTapRight() {}
 
   @override
-  void onScroll(int pointer, Vector2 position, Vector2 scrollDelta) {
-    // TODO: implement onScroll
-  }
+  void onScroll(int pointer, Vector2 position, Vector2 scrollDelta) {}
 }

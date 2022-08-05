@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:bonfire/bonfire.dart';
 import 'package:dev_game/utils/constantes.dart';
 import 'package:flame_audio/flame_audio.dart';
@@ -121,21 +123,21 @@ class _PopUpDadosWidgetState extends State<PopUpDadosWidget> {
                   onPressed: () {
                     setState(() {
                       if (widget.dado1 != '') {
-                        clima = clima - 1;
+                        fase.clima = fase.clima - 1;
                         setTempo(1);
-                        aprendizado = aprendizado + 0;
-                        qualidade = qualidade + 1;
-                        dados = dados + 2;
+                        fase.aprendizado = fase.aprendizado + 0;
+                        fase.qualidade = fase.qualidade + 1;
+                        fase.dados = fase.dados + 2;
                       }
                       if (widget.dado2 != '') {
-                        dados = dados + 1;
+                        fase.dados = fase.dados + 1;
                       }
                       if (widget.dado3 != '') {
-                        clima = clima + 1;
+                        fase.clima = fase.clima + 1;
                         //tempo = tempo + ;
-                        aprendizado = aprendizado + 0;
-                        qualidade = qualidade - 1;
-                        dados = dados - 1;
+                        fase.aprendizado = fase.aprendizado + 0;
+                        fase.qualidade = fase.qualidade - 1;
+                        fase.dados = fase.dados - 1;
                       }
 
                       FlameAudio.play('dados_sound.mp3');

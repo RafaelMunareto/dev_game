@@ -1,6 +1,7 @@
+// ignore_for_file: file_names
+
 import 'package:bonfire/bonfire.dart';
 import 'package:dev_game/utils/constantes.dart';
-import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 
 class PopUpProcessamentoWidget extends StatefulWidget {
@@ -33,7 +34,8 @@ class _PopUpProcessamentoWidgetState extends State<PopUpProcessamentoWidget> {
                     ),
                     Wrap(
                       children: [
-                        linha('Processar os $dados dados.', '-1 min de tempo.'),
+                        linha('Processar os $fase.dados dados.',
+                            '-1 min de tempo.'),
                         linha(
                             'Não',
                             ''
@@ -97,7 +99,7 @@ class _PopUpProcessamentoWidgetState extends State<PopUpProcessamentoWidget> {
                   onPressed: () {
                     setState(() {
                       if (descricao != "") {
-                        timerProcessamento = Timer(dados * 10);
+                        timerProcessamento = Timer(fase.dados * 10);
                         timerProcessamento.start();
                         processamentoAction = true;
                         FollowerWidget.remove('processamento');
