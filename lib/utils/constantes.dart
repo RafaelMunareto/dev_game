@@ -20,6 +20,7 @@ bool movePositionRodrigoPaginas = false;
 bool processamentoAction = false;
 bool paginasAction = false;
 bool rorizEmbora = false;
+bool infoAction = false;
 
 setTempo(int tempo) {
   var currentTime = timerinitial.limit;

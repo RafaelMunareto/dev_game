@@ -198,19 +198,22 @@ class _PlayerInterfacePontosState extends State<PlayerInterfacePontos> {
   }
 
   Widget info() {
-    return Padding(
-      padding: const EdgeInsets.all(4.0),
-      child: Container(
-        decoration: BoxDecoration(
-            color: Colors.black38, borderRadius: BorderRadius.circular(120)),
-        child: const Padding(
-          padding: EdgeInsets.all(8.0),
-          child: MouseRegion(
-            cursor: SystemMouseCursors.click,
-            child: Icon(
-              Icons.info,
-              size: 32,
-              color: Colors.white,
+    return GestureDetector(
+      onTap: () => infoAction = true,
+      child: Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: Container(
+          decoration: BoxDecoration(
+              color: Colors.black38, borderRadius: BorderRadius.circular(120)),
+          child: const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: Icon(
+                Icons.info,
+                size: 32,
+                color: Colors.white,
+              ),
             ),
           ),
         ),

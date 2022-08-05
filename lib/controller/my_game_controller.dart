@@ -13,11 +13,13 @@ class MyGameController extends GameComponent {
   final int stage;
   bool changeMusic = true;
   bool fimDoTimer = false;
+
   MyGameController(this.stage);
 
   @override
   onLoad() async {
     FlameAudio.bgm.play('musica_ambiente.mp3', volume: 0.4);
+    showDialogInicio();
 
     super.onLoad();
   }
@@ -36,6 +38,10 @@ class MyGameController extends GameComponent {
 
     timerinitial.update(dt);
 
+    if (infoAction) {
+      infoAction = false;
+      showDialogInicio();
+    }
     if (timerinitial.finished && !fimDoTimer) {
       fimDoTimer = true;
       showDialog(
@@ -159,6 +165,122 @@ class MyGameController extends GameComponent {
         return const Game();
       }),
       (route) => false,
+    );
+  }
+
+  showDialogInicio() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: Colors.black54,
+          content: SizedBox(
+            height: 250,
+            width: 500,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Center(
+                      child: Text(
+                    'Missão de hoje',
+                    style: TextStyle(color: Colors.white, fontSize: 24),
+                  )),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Wrap(
+                    alignment: WrapAlignment.spaceBetween,
+                    children: const [
+                      Icon(
+                        Icons.sunny,
+                        color: Colors.amber,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Você deve alcançar o mínimo de 1 no clima.',
+                        style: TextStyle(color: Colors.white, fontSize: 14),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Wrap(
+                    alignment: WrapAlignment.spaceBetween,
+                    children: const [
+                      Icon(
+                        Icons.book,
+                        color: Colors.blue,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Você deve alcançar o mínimo de 1 no aprendizado.',
+                        style: TextStyle(color: Colors.white, fontSize: 14),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Wrap(
+                    alignment: WrapAlignment.spaceBetween,
+                    children: const [
+                      Icon(
+                        Icons.verified,
+                        color: Colors.red,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Você deve alcançar a qualidade 2.',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Wrap(
+                    alignment: WrapAlignment.spaceBetween,
+                    children: const [
+                      Icon(
+                        Icons.dataset_outlined,
+                        color: Colors.green,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Criar uma página com o mínimo de 2 dados processados.',
+                        style: TextStyle(color: Colors.white, fontSize: 14),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Fechar'),
+            )
+          ],
+        );
+      },
     );
   }
 }
