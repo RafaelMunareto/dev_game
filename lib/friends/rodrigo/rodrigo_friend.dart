@@ -2,17 +2,21 @@ import 'package:bonfire/bonfire.dart';
 import 'package:dev_game/friends/rodrigo/rodrigo_sprite_sheet.dart';
 import 'package:dev_game/player/hero_sprint_sheet.dart';
 import 'package:dev_game/utils/constantes.dart';
+import 'package:dev_game/utils/conversas/conversas_normais.dart';
+import 'package:dev_game/utils/widgets/action_friend/popUpPaginas.dart';
 import 'package:dev_game/utils/widgets/comum/identity_widget.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 
-class RodrigoFriend extends SimplePlayer
+class RodrigoFriend extends SimpleEnemy
     with
         ObjectCollision,
         Lighting,
         AutomaticRandomMovement,
         TapGesture,
         MouseGesture {
-  bool canMove = true;
+  bool movePosition = false;
+  Vector2 positionTarget = Vector2(84, 754);
   RodrigoFriend(Vector2 position)
       : super(
             position: position,
@@ -50,35 +54,70 @@ class RodrigoFriend extends SimplePlayer
   }
 
   @override
-  void update(double dt) {
-    runRandomMovement(dt);
-    super.update(dt);
+  void onTap() {
+    seePlayer(
+      radiusVision: 72,
+      observed: (value) {
+        FollowerWidget.remove('processamento');
+        FollowerWidget.remove('identityRafa');
+
+        animation?.play(SimpleAnimationEnum.idleDown);
+        var say = ConversasNormais(
+            spriteFriend: RodrigoSpriteSheet.heroIdDown.asWidget(),
+            spriteHero: HeroSpriteSheet.heroIdDown.asWidget());
+        TalkDialog.show(context, [
+          ...say.talkNormal('Fala Vicentão !', 'E aí Mumu!'),
+          ...say.talkNormal(
+              'Bora fazer uns trens aí.',
+              !timerPaginas.finished && paginasAction
+                  ? 'Tô fazendos as páginas, devo ter feito ${(timerPaginas.progress * 100).toStringAsFixed(0)} %'
+                  : processados == 0
+                      ? 'Precisamos processar alguns dados para fazer as páginas! Troca uma ideia com o Rafinha.'
+                      : 'Quer que eu faça as páginas ?'),
+        ], onFinish: () {
+          if (processados > 0) {
+            if (!FollowerWidget.isVisible('paginasRodrigo')) {
+              FollowerWidget.show(
+                  identify: 'paginasRodrigo',
+                  context: context,
+                  align: alignProcessamento,
+                  target: this,
+                  child: const PopUpPaginasWidget());
+            }
+          }
+        });
+      },
+    );
+  }
+
+  moves(Vector2 target) {
+    if (position.x == target.x && position.y == target.y) {
+      movePositionRodrigoPaginas = false;
+      size = Vector2.all(0);
+    }
+    if (movePositionRodrigoPaginas) {
+      animation!.play(SimpleAnimationEnum.runUp);
+      position.moveToTarget(Vector2(target.x, target.y), 0.7);
+    }
   }
 
   @override
-  void onTap() {
-    TalkDialog.show(context, [
-      Say(
-          text: [
-            const TextSpan(text: "Bom dia, Mumu!"),
-          ],
-          person: SizedBox(
-            height: 150,
-            width: 150,
-            child: RodrigoSpriteSheet.heroIdDown.asWidget(),
-          ),
-          personSayDirection: PersonSayDirection.RIGHT),
-      Say(
-          text: [
-            const TextSpan(text: "E aí Vicentão?"),
-          ],
-          person: SizedBox(
-            height: 150,
-            width: 150,
-            child: HeroSpriteSheet.heroIdDown.asWidget(),
-          ),
-          personSayDirection: PersonSayDirection.RIGHT)
-    ]);
+  void update(double dt) {
+    timerPaginas.update(dt);
+    if (paginasAction) {
+      life = (timerPaginas.progress * 100);
+      if (timerPaginas.progress == 1) {
+        paginasAction = false;
+        FlameAudio.play('paginas_sound.mp3');
+        paginas = processados;
+        processados = 0;
+      }
+    }
+    if (movePositionRodrigoPaginas) {
+      moves(positionTarget);
+    }
+
+    super.update(dt);
   }
 
   @override
@@ -108,6 +147,23 @@ class RodrigoFriend extends SimplePlayer
             responsabilidade: "Chefe do Frontend",
           ));
     }
+  }
+
+  @override
+  void render(Canvas canvas) {
+    if (position.x == positionTarget.x &&
+        position.y == positionTarget.y &&
+        paginasAction) {
+      drawDefaultLifeBar(
+        canvas,
+        borderWidth: 2,
+        width: 35,
+        height: 8,
+        borderRadius: BorderRadius.circular(5),
+        align: const Offset(0, -5),
+      );
+    }
+    super.render(canvas);
   }
 
   @override

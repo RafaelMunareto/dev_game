@@ -17,7 +17,7 @@ class MyGameController extends GameComponent {
 
   @override
   onLoad() async {
-    FlameAudio.bgm.play('musica_ambiente_2.mp3', volume: 0.4);
+    FlameAudio.bgm.play('musica_ambiente.mp3', volume: 0.4);
 
     super.onLoad();
   }

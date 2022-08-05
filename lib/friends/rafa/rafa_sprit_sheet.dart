@@ -116,4 +116,13 @@ class RafaSpriteSheet {
           texturePosition: Vector2(96, 608),
         ),
       );
+  static Future<SpriteAnimation> get cadeiraRight => SpriteAnimation.load(
+        'player/rafa.png',
+        SpriteAnimationData.sequenced(
+          amount: 6,
+          stepTime: 0.15,
+          textureSize: Vector2(16, 32),
+          texturePosition: Vector2(192, 576),
+        ),
+      );
 }

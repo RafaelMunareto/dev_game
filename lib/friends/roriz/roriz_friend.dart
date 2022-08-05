@@ -74,7 +74,7 @@ class RorizFriend extends SimpleEnemy
           // ...say.talkNormal('Tô precisando de uns dados para um sistema.',
           //     'Legal! o que vocês vão fazer?'),
           ...say.talkNormal(
-              'Um sistema para o chefe, vc tem alguns dados que pode compartilhar?',
+              'Estamos fazendo um sistema para o chefe, vc tem alguns dados que pode compartilhar?',
               'Tenho sim, deixa eu ver aqui no celular ...')
         ], onFinish: () {
           celular = true;

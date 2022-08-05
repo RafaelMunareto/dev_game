@@ -1,6 +1,7 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:dev_game/controller/my_game_controller.dart';
 import 'package:dev_game/decoration/cadeira_munareto/cadeira_munareto.dart';
+import 'package:dev_game/decoration/cadeira_rodrigo/cadeira_rodrigo.dart';
 import 'package:dev_game/enimies/bispo/bispo_enimy.dart';
 import 'package:dev_game/friends/cadu/cadu_friend.dart';
 import 'package:dev_game/friends/edgar/edgar_friend.dart';
@@ -93,6 +94,8 @@ class _GameState extends State<Game> {
             'roriz': (properties) => RorizFriend(properties.position),
             'cadeira_munareto': ((properties) =>
                 CadeiraMunareto(properties.position)),
+            'cadeira_rodrigo': ((properties) =>
+                CadeiraRodrigo(properties.position)),
             // 'lamp': ((properties) => Lamp(properties.position)),
             // 'mushroom': ((properties) => MushRoom(properties.position))
           }),

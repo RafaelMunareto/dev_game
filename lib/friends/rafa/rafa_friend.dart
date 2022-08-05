@@ -1,3 +1,5 @@
+import 'dart:async' as async;
+
 import 'package:bonfire/bonfire.dart';
 import 'package:dev_game/friends/cadu/cadu_sprite_sheet.dart';
 import 'package:dev_game/friends/rafa/rafa_sprit_sheet.dart';
@@ -26,14 +28,8 @@ class RafaFriend extends SimpleEnemy
               tileSizePerson,
             ),
             animation: SimpleDirectionAnimation(
-              idleLeft: RafaSpriteSheet.heroIdLeft,
-              idleRight: RafaSpriteSheet.heroIdRight,
-              idleUp: RafaSpriteSheet.heroIdUp,
-              idleDown: RafaSpriteSheet.heroIdDown,
-              runRight: RafaSpriteSheet.heroRunRight,
-              runLeft: RafaSpriteSheet.heroRunLeft,
-              runUp: RafaSpriteSheet.heroRunUp,
-              runDown: RafaSpriteSheet.heroRunDown,
+              runRight: RafaSpriteSheet.cadeiraRight,
+              idleRight: RafaSpriteSheet.cadeiraRight,
             ),
             speed: velocidadeGamers) {
     setupCollision(
@@ -59,7 +55,6 @@ class RafaFriend extends SimpleEnemy
     seePlayer(
       radiusVision: 72,
       observed: (value) {
-        canMove = false;
         FollowerWidget.remove('processamento');
         FollowerWidget.remove('identityRafa');
 
@@ -71,11 +66,15 @@ class RafaFriend extends SimpleEnemy
           ...say.talkNormal('E aí Rafinha', 'E aí, Muna!'),
           ...say.talkNormal(
               'Como tá aí?',
-              dados == 0
-                  ? 'Precisamos de alguns dados para processar, fiquei sabendo que o Roriz tem algum.'
-                  : 'Quer que eu processe os $dados dados ?'),
+              !timerProcessamento.finished
+                  ? 'Estou processandos os dados segura aí já estou acabando'
+                  : dados == 0
+                      ? 'Precisamos de alguns dados para processar, fiquei sabendo que o Roriz tem algum.'
+                      : 'Quer que eu processe esses $dados dados ?'),
         ], onFinish: () {
-          if (!FollowerWidget.isVisible('processamento') && dados > 0) {
+          if (!FollowerWidget.isVisible('processamento') &&
+              dados > 0 &&
+              timerProcessamento.finished) {
             FollowerWidget.show(
                 identify: 'processamento',
                 context: context,
@@ -100,17 +99,36 @@ class RafaFriend extends SimpleEnemy
         dados = 0;
       }
     }
-    seePlayer(
-        observed: (_) {},
-        notObserved: () {
-          if (canMove) {
-            runRandomMovement(dt);
-          }
-        });
-
     timerProcessamento.update(dt);
     super.update(dt);
   }
+
+  // moves(Vector2 target) {
+  //   var positionXAtual = position.x;
+  //   var positionYAtual = position.y;
+
+  //   if (position.x == target.x && position.y == target.y) {
+  //     movePosition = false;
+  //   }
+  //   if (movePosition) {
+  //     if ((positionXAtual - target.y).abs() <=
+  //         (positionYAtual - target.y).abs()) {
+  //       if (positionYAtual > (position.y * 0.1)) {
+  //         animation!.play(SimpleAnimationEnum.runUp);
+  //       } else if (positionYAtual < (position.y * 0.1)) {
+  //         animation!.play(SimpleAnimationEnum.runDown);
+  //       }
+  //       position.moveToTarget(Vector2(target.x, target.y), 0.7);
+  //     } else {
+  //       if (positionXAtual > (position.x * 0.1)) {
+  //         animation!.play(SimpleAnimationEnum.runRight);
+  //       } else if (positionXAtual < (position.x * 0.1)) {
+  //         animation!.play(SimpleAnimationEnum.runLeft);
+  //       }
+  //       position.moveToTarget(Vector2(target.x, target.y), 0.7);
+  //     }
+  //   }
+  // }
 
   @override
   void render(Canvas canvas) {
@@ -118,8 +136,9 @@ class RafaFriend extends SimpleEnemy
       drawDefaultLifeBar(
         canvas,
         borderWidth: 2,
-        width: 30,
-        height: 5,
+        width: 35,
+        height: 8,
+        borderRadius: BorderRadius.circular(2),
         align: const Offset(0, -5),
       );
     }

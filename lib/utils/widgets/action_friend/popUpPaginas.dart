@@ -3,17 +3,16 @@ import 'package:dev_game/utils/constantes.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 
-class PopUpProcessamentoWidget extends StatefulWidget {
-  const PopUpProcessamentoWidget({
+class PopUpPaginasWidget extends StatefulWidget {
+  const PopUpPaginasWidget({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<PopUpProcessamentoWidget> createState() =>
-      _PopUpProcessamentoWidgetState();
+  State<PopUpPaginasWidget> createState() => _PopUpPaginasWidgetState();
 }
 
-class _PopUpProcessamentoWidgetState extends State<PopUpProcessamentoWidget> {
+class _PopUpPaginasWidgetState extends State<PopUpPaginasWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -33,7 +32,9 @@ class _PopUpProcessamentoWidgetState extends State<PopUpProcessamentoWidget> {
                     ),
                     Wrap(
                       children: [
-                        linha('Processar os $dados dados.', '-1 min de tempo.'),
+                        linha(
+                            'Quer que eu crie as páginas com os dados Processados ?.',
+                            '-1 min de tempo.'),
                         linha(
                             'Não',
                             ''
@@ -97,11 +98,12 @@ class _PopUpProcessamentoWidgetState extends State<PopUpProcessamentoWidget> {
                   onPressed: () {
                     setState(() {
                       if (descricao != "") {
-                        timerProcessamento = Timer(dados * 10);
-                        timerProcessamento.start();
-                        processamentoAction = true;
-                        FollowerWidget.remove('processamento');
+                        paginasAction = true;
+                        movePositionRodrigoPaginas = true;
+                        timerPaginas.reset();
+                        timerPaginas.start();
                       }
+                      FollowerWidget.remove('paginasRodrigo');
                     });
                   },
                   child: const Text('Selecionar')),

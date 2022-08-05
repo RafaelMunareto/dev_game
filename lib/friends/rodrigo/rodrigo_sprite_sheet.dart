@@ -116,4 +116,14 @@ class RodrigoSpriteSheet {
           texturePosition: Vector2(96, 608),
         ),
       );
+
+  static Future<SpriteAnimation> get cadeiraLogada => SpriteAnimation.load(
+        'player/rodrigo.png',
+        SpriteAnimationData.sequenced(
+          amount: 1,
+          stepTime: 0.15,
+          textureSize: Vector2(16, 32),
+          texturePosition: Vector2(224, 608),
+        ),
+      );
 }

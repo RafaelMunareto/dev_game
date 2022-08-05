@@ -15,7 +15,10 @@ const alignActionPlayers = Offset(50, -280);
 var timerinitial = flame.Timer(480);
 var timeinitialReset = flame.Timer(480);
 var timerProcessamento = flame.Timer(10);
+var timerPaginas = flame.Timer(20);
+bool movePositionRodrigoPaginas = false;
 bool processamentoAction = false;
+bool paginasAction = false;
 bool rorizEmbora = false;
 
 setTempo(int tempo) {
