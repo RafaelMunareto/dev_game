@@ -44,6 +44,7 @@ class MyGameController extends GameComponent {
       optionsAction = false;
       showDialogOptions();
     }
+
     if (timerinitial.finished && !fimDoTimer) {
       FlameAudio.play('perdeu_sound.mp3');
       fimDoTimer = true;

@@ -4,17 +4,22 @@ import 'package:bonfire/bonfire.dart';
 import 'package:dev_game/utils/constantes.dart';
 import 'package:flutter/material.dart';
 
-class PopUpProcessamentoWidget extends StatefulWidget {
-  const PopUpProcessamentoWidget({
+class PopUpPadraoWidget extends StatefulWidget {
+  final String title;
+  final String subTitle;
+  final Function setAction;
+  const PopUpPadraoWidget({
     Key? key,
+    required this.title,
+    required this.subTitle,
+    required this.setAction,
   }) : super(key: key);
 
   @override
-  State<PopUpProcessamentoWidget> createState() =>
-      _PopUpProcessamentoWidgetState();
+  State<PopUpPadraoWidget> createState() => _PopUpPadraoWidgetState();
 }
 
-class _PopUpProcessamentoWidgetState extends State<PopUpProcessamentoWidget> {
+class _PopUpPadraoWidgetState extends State<PopUpPadraoWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -34,8 +39,7 @@ class _PopUpProcessamentoWidgetState extends State<PopUpProcessamentoWidget> {
                     ),
                     Wrap(
                       children: [
-                        linha('Processar os $fase.dados dados.',
-                            '-1 min de tempo.'),
+                        linha(widget.title, widget.subTitle),
                         linha(
                             'Não',
                             ''
@@ -99,11 +103,11 @@ class _PopUpProcessamentoWidgetState extends State<PopUpProcessamentoWidget> {
                   onPressed: () {
                     setState(() {
                       if (descricao != "") {
-                        timerProcessamento = Timer(fase.dados * 60);
-                        timerProcessamento.start();
-                        processamentoAction = true;
+                        widget.setAction(true);
+                        processamentoAction = false;
+                        paginasAction = false;
                       }
-                      FollowerWidget.remove('processamento');
+                      FollowerWidget.remove('agiliza');
                     });
                   },
                   child: const Text('Selecionar')),

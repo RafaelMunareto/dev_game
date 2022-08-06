@@ -62,7 +62,7 @@ class RafaFriend extends SimpleEnemy
           ...say.talkNormal('E aí Rafinha', 'E aí, Muna!'),
           ...say.talkNormal(
               'Como tá aí?',
-              !timerProcessamento.finished
+              processamentoAction && !timerProcessamento.finished
                   ? 'Estou processandos os dados segura aí já estou acabando'
                   : fase.dados == 0
                       ? 'Precisamos de alguns dados para processar, fiquei sabendo que o Roriz tem algum.'

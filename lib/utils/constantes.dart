@@ -16,14 +16,18 @@ const alignPosicionamentoSnackbar = Offset(0, 0);
 const alignActionPlayers = Offset(50, -280);
 var timerinitial = flame.Timer(480);
 var timeinitialReset = flame.Timer(480);
-var timerProcessamento = flame.Timer(10);
-var timerPaginas = flame.Timer(20);
+var timerProcessamento = flame.Timer(60);
+var timerPaginas = flame.Timer(60);
 bool movePositionRodrigoPaginas = false;
 bool processamentoAction = false;
 bool paginasAction = false;
 bool rorizEmbora = false;
 bool infoAction = false;
 bool optionsAction = false;
+
+bool agiliza = false;
+
+setAgiliza(value) => agiliza = value;
 
 setTempo(int tempo) {
   var currentTime = timerinitial.limit;

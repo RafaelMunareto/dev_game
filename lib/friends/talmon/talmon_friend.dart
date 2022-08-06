@@ -2,10 +2,13 @@ import 'package:bonfire/bonfire.dart';
 import 'package:dev_game/friends/talmon/talmon_sprite_sheet.dart';
 import 'package:dev_game/player/hero_sprint_sheet.dart';
 import 'package:dev_game/utils/constantes.dart';
+import 'package:dev_game/utils/conversas/conversas_normais.dart';
+import 'package:dev_game/utils/widgets/action_friend/popUpPadrao.dart';
 import 'package:dev_game/utils/widgets/comum/identity_widget.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 
-class TalmonFriend extends SimplePlayer
+class TalmonFriend extends SimpleEnemy
     with
         ObjectCollision,
         Lighting,
@@ -50,35 +53,59 @@ class TalmonFriend extends SimplePlayer
   }
 
   @override
-  void update(double dt) {
-    runRandomMovement(dt);
-    super.update(dt);
+  void onTap() {
+    seePlayer(
+      radiusVision: 72,
+      observed: (value) {
+        FollowerWidget.remove('agiliza');
+        FollowerWidget.remove('identityTalmon');
+
+        var say = ConversasNormais(
+            spriteFriend: TalmonSpriteSheet.heroIdDown.asWidget(),
+            spriteHero: HeroSpriteSheet.heroIdDown.asWidget());
+        TalkDialog.show(context, [
+          ...say.talkNormal('E aí Muriçoca', 'E aí, cabeça de grilo!'),
+          ...say.talkNormal(
+              'Como tá aí?',
+              agiliza
+                  ? "Você já pediu para agilizar uma vêz somente na próxima fase."
+                  : !timerProcessamento.finished && !timerPaginas.finished
+                      ? 'Posso ajudar o Rafa ou o Rodrigo mas eles não estão em nenhum projeto'
+                      : 'Quer eu agilize a criação das páginas ou o processamento ?'),
+        ], onFinish: () {
+          if (!FollowerWidget.isVisible('agiliza') && !agiliza) {
+            FollowerWidget.show(
+                identify: 'agiliza',
+                context: context,
+                align: alignProcessamento,
+                target: this,
+                child: const PopUpPadraoWidget(
+                  title: 'Quer que eu agilize o que os meninos estão fazendo?',
+                  subTitle:
+                      'Ganho de processamento ou página, pode usar somente uma vez.',
+                  setAction: setAgiliza,
+                ));
+          }
+          canMove = true;
+        });
+      },
+    );
   }
 
   @override
-  void onTap() {
-    TalkDialog.show(context, [
-      Say(
-          text: [
-            const TextSpan(text: "Bom dia, Muriçoca!"),
-          ],
-          person: SizedBox(
-            height: 150,
-            width: 150,
-            child: TalmonSpriteSheet.heroIdDown.asWidget(),
-          ),
-          personSayDirection: PersonSayDirection.RIGHT),
-      Say(
-          text: [
-            const TextSpan(text: "E aí meu jovem?"),
-          ],
-          person: SizedBox(
-            height: 150,
-            width: 150,
-            child: HeroSpriteSheet.heroIdDown.asWidget(),
-          ),
-          personSayDirection: PersonSayDirection.RIGHT)
-    ]);
+  void update(double dt) {
+    if (agiliza) {
+      if (fase.dados > 0) {
+        fase.processados = fase.dados;
+        fase.dados = 0;
+      }
+      if (fase.processados > 0) {
+        fase.processados = 0;
+        fase.paginas = 1;
+        FlameAudio.play('agiliza.mp3');
+      }
+    }
+    super.update(dt);
   }
 
   @override
