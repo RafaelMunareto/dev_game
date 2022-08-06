@@ -4,6 +4,7 @@ import 'package:dev_game/utils/fase_model.dart';
 import 'package:flame/timer.dart' as flame;
 import 'package:flutter/material.dart';
 
+const baseUrl = 'http://localhost:3333';
 const double tileSize = 16;
 const double tileSizePerson = 32;
 const double velocidadeGamers = 85;

@@ -61,6 +61,8 @@ class MyGameController extends GameComponent {
               TextButton(
                 onPressed: () {
                   goHome(context);
+                  infoAction = false;
+                  optionsAction = true;
                 },
                 child: const Text('Recomeçar'),
               )

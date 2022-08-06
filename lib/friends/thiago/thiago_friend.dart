@@ -45,12 +45,6 @@ class ThiagoFriend extends SimplePlayer
   }
 
   @override
-  void update(double dt) {
-    //runRandomMovement(dt);
-    super.update(dt);
-  }
-
-  @override
   void onTap() {
     TalkDialog.show(context, [
       Say(
