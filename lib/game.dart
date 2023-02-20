@@ -56,16 +56,16 @@ class _GameState extends State<Game> {
 
   @override
   Widget build(BuildContext context) {
-    return BonfireTiledWidget(
+    return BonfireWidget(
       joystick: Joystick(
         directional: JoystickDirectional(
             color: Colors.orange, margin: const EdgeInsets.all(64)),
-        // actions: [
-        //   JoystickAction(
-        //       actionId: 32,
-        //       color: Colors.red,
-        //       margin: const EdgeInsets.all(48)),
-        // ],
+        actions: [
+          JoystickAction(
+              actionId: 32,
+              color: Colors.red,
+              margin: const EdgeInsets.all(48)),
+        ],
         keyboardConfig: KeyboardConfig(
           enable: true,
           keyboardDirectionalType: KeyboardDirectionalType.wasdAndArrows,
@@ -74,8 +74,8 @@ class _GameState extends State<Game> {
       components: [
         MyGameController(widget.stage),
       ], //...enemies],
-      map: TiledWorldMap('maps/dev_game.json',
-          forceTileSize: const Size(28, 28),
+      map: WorldMapByTiled('maps/dev_game.json',
+          forceTileSize: Vector2(28, 28),
           objectsBuilder: {
             'rafa': (properties) => RafaFriend(properties.position),
             'talmon': (properties) => TalmonFriend(properties.position),

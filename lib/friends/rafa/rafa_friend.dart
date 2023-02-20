@@ -24,6 +24,7 @@ class RafaFriend extends SimpleEnemy
               tileSizePerson,
               tileSizePerson,
             ),
+            life: 100,
             animation: SimpleDirectionAnimation(
               runRight: RafaSpriteSheet.cadeiraRight,
               idleRight: RafaSpriteSheet.cadeiraRight,
@@ -87,7 +88,7 @@ class RafaFriend extends SimpleEnemy
   @override
   void update(double dt) {
     if (processamentoAction) {
-      life = (timerProcessamento.progress * 100);
+      updateLife(timerProcessamento.progress * 100.0);
       if (timerProcessamento.progress == 1) {
         processamentoAction = false;
         FlameAudio.play('processamento_sound.mp3');
@@ -145,12 +146,12 @@ class RafaFriend extends SimpleEnemy
   void onTapCancel() {}
 
   @override
-  void onTapDown(int pointer, Vector2 position) {}
+  void onMouseTap(MouseButton button) {}
 
   @override
   void onTapUp(int pointer, Vector2 position) {}
   @override
-  void onHoverEnter(int pointer, Vector2 position) {
+  void onMouseHoverEnter(int pointer, Vector2 position) {
     if (!FollowerWidget.isVisible('identifyRafa')) {
       FollowerWidget.show(
           identify: 'identifyRafa',
@@ -165,22 +166,10 @@ class RafaFriend extends SimpleEnemy
   }
 
   @override
-  void onHoverExit(int pointer, Vector2 position) {
+  void onMouseHoverExit(int pointer, Vector2 position) {
     FollowerWidget.remove('identifyRafa');
   }
 
   @override
   void onMouseCancel() {}
-
-  @override
-  void onMouseTapLeft() {}
-
-  @override
-  void onMouseTapMiddle() {}
-
-  @override
-  void onMouseTapRight() {}
-
-  @override
-  void onScroll(int pointer, Vector2 position, Vector2 scrollDelta) {}
 }

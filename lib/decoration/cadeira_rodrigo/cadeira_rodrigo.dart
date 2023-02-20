@@ -66,8 +66,5 @@ class CadeiraRodrigo extends GameDecoration with ObjectCollision, TapGesture {
   void onTapCancel() {}
 
   @override
-  void onTapDown(int pointer, Vector2 position) {}
-
-  @override
   void onTapUp(int pointer, Vector2 position) {}
 }

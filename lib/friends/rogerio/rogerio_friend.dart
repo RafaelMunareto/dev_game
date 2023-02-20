@@ -85,12 +85,12 @@ class RogerioFriend extends SimplePlayer
   void onTapCancel() {}
 
   @override
-  void onTapDown(int pointer, Vector2 position) {}
+  void onMouseTap(MouseButton button) {}
 
   @override
   void onTapUp(int pointer, Vector2 position) {}
   @override
-  void onHoverEnter(int pointer, Vector2 position) {
+  void onMouseHoverEnter(int pointer, Vector2 position) {
     if (!FollowerWidget.isVisible('identifyRogerio')) {
       FollowerWidget.show(
           identify: 'identifyRogerio',
@@ -105,22 +105,10 @@ class RogerioFriend extends SimplePlayer
   }
 
   @override
-  void onHoverExit(int pointer, Vector2 position) {
+  void onMouseHoverExit(int pointer, Vector2 position) {
     FollowerWidget.remove('identifyRogerio');
   }
 
   @override
   void onMouseCancel() {}
-
-  @override
-  void onMouseTapLeft() {}
-
-  @override
-  void onMouseTapMiddle() {}
-
-  @override
-  void onMouseTapRight() {}
-
-  @override
-  void onScroll(int pointer, Vector2 position, Vector2 scrollDelta) {}
 }

@@ -5,7 +5,7 @@ import 'package:dev_game/utils/constantes.dart';
 import 'package:flutter/cupertino.dart';
 
 class RichardEnemy extends SimpleEnemy
-    with ObjectCollision, AutomaticRandomMovement {
+    with ObjectCollision, AutomaticRandomMovement, UseBarLife {
   bool canMove = true;
 
   RichardEnemy(Vector2 position)
@@ -52,11 +52,11 @@ class RichardEnemy extends SimpleEnemy
 
   @override
   void render(Canvas canvas) {
-    drawDefaultLifeBar(canvas,
-        borderRadius: BorderRadius.circular(5),
-        borderWidth: 2.0,
-        height: 2,
-        align: const Offset(0, -3));
+    // drawDefaultLifeBar(canvas,
+    //     borderRadius: BorderRadius.circular(5),
+    //     borderWidth: 2.0,
+    //     height: 2,
+    //     align: const Offset(0, -3));
     super.render(canvas);
   }
 
@@ -100,10 +100,7 @@ class RichardEnemy extends SimpleEnemy
       damage: 20,
       size: Vector2(tileSize, tileSize),
       sizePush: tileSize / 2,
-      animationLeft: AttackSpritesSheet.attackLeft,
       animationRight: AttackSpritesSheet.attackRight,
-      animationDown: AttackSpritesSheet.attackBottom,
-      animationUp: AttackSpritesSheet.attackTop,
     );
   }
 }

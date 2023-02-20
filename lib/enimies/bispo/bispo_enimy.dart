@@ -5,7 +5,7 @@ import 'package:dev_game/utils/constantes.dart';
 import 'package:flutter/cupertino.dart';
 
 class BispoEnemy extends SimpleEnemy
-    with ObjectCollision, AutomaticRandomMovement {
+    with ObjectCollision, AutomaticRandomMovement, UseBarLife {
   bool canMove = true;
   BispoEnemy(Vector2 position)
       : super(
@@ -57,12 +57,12 @@ class BispoEnemy extends SimpleEnemy
 
   @override
   void render(Canvas canvas) {
-    drawDefaultLifeBar(
-      canvas,
-      borderWidth: 2,
-      height: 2,
-      align: const Offset(0, -5),
-    );
+    // drawDefaultLifeBar(
+    //   canvas,
+    //   borderWidth: 2,
+    //   height: 2,
+    //   align: const Offset(0, -5),
+    // );
     super.render(canvas);
   }
 
@@ -104,10 +104,7 @@ class BispoEnemy extends SimpleEnemy
       damage: 20,
       size: Vector2(tileSize, tileSize),
       sizePush: tileSize / 2,
-      animationLeft: AttackSpritesSheet.attackLeft,
       animationRight: AttackSpritesSheet.attackRight,
-      animationDown: AttackSpritesSheet.attackBottom,
-      animationUp: AttackSpritesSheet.attackTop,
     );
   }
 }

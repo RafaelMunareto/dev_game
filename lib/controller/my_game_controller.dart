@@ -24,15 +24,15 @@ class MyGameController extends GameComponent {
 
   @override
   void update(double dt) async {
-    // if (timerinitial.progress.toStringAsFixed(2) == '0.05') {
-    //   FlameAudio.bgm.play('musica_ambiente.mp3', volume: 0.4);
-    // }
-    // if (timerinitial.progress.toStringAsFixed(2) == '0.35') {
-    //   FlameAudio.bgm.play('musica_ambiente_2.mp3', volume: 0.4);
-    // }
-    // if (timerinitial.progress.toStringAsFixed(2) == '0.70') {
-    //   FlameAudio.bgm.play('musica_ambiente_3.mp3', volume: 0.4);
-    // }
+    if (timerinitial.progress.toStringAsFixed(2) == '0.05') {
+      FlameAudio.bgm.play('musica_ambiente.mp3', volume: 0.4);
+    }
+    if (timerinitial.progress.toStringAsFixed(2) == '0.35') {
+      FlameAudio.bgm.play('musica_ambiente_2.mp3', volume: 0.4);
+    }
+    if (timerinitial.progress.toStringAsFixed(2) == '0.70') {
+      FlameAudio.bgm.play('musica_ambiente_3.mp3', volume: 0.4);
+    }
 
     timerinitial.update(dt);
 

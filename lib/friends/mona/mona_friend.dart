@@ -85,12 +85,9 @@ class MonaFriend extends SimplePlayer
   void onTapCancel() {}
 
   @override
-  void onTapDown(int pointer, Vector2 position) {}
-
-  @override
   void onTapUp(int pointer, Vector2 position) {}
   @override
-  void onHoverEnter(int pointer, Vector2 position) {
+  void onMouseHoverEnter(int pointer, Vector2 position) {
     if (!FollowerWidget.isVisible('identifyMona')) {
       FollowerWidget.show(
           identify: 'identifyMona',
@@ -105,7 +102,7 @@ class MonaFriend extends SimplePlayer
   }
 
   @override
-  void onHoverExit(int pointer, Vector2 position) {
+  void onMouseHoverExit(int pointer, Vector2 position) {
     FollowerWidget.remove('identifyMona');
   }
 
@@ -113,14 +110,5 @@ class MonaFriend extends SimplePlayer
   void onMouseCancel() {}
 
   @override
-  void onMouseTapLeft() {}
-
-  @override
-  void onMouseTapMiddle() {}
-
-  @override
-  void onMouseTapRight() {}
-
-  @override
-  void onScroll(int pointer, Vector2 position, Vector2 scrollDelta) {}
+  void onMouseTap(MouseButton button) {}
 }
